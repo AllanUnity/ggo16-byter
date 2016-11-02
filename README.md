@@ -2,6 +2,8 @@
 
 ![GitHub Game Off 2016 Theme is Hacking, Modding, or Augmenting](https://cloud.githubusercontent.com/assets/121322/19498019/d8827370-9543-11e6-82d8-6da822b6147b.png)
 
+## Concept
+
 "Clicker" game where you produce bits by clicking/holding a button in order to use those bits for nefarious purposes. 
 
 ## Key Terms
@@ -11,7 +13,7 @@
 - Stored bits: The number of bits created and stored in your storage unit.
 - Storage Capacity: The total number of bits you can store in your storage unit.
 
-## Core Concepts
+## Core Gameplay
 
 - Create and store bits in a storage unit (Stored bits).
 - Computers are required to transmit bits (Outbound bits/sec) to a target.
@@ -72,8 +74,8 @@ Repeatable upgrades can be purchased a number of times (ex. 10x Keyboard, 5x Scr
 	- ZIP: 9% increase
 	- Machine Learning: 12% increase
 - Data Replication (automatically generate Stored Bits):
-	- Tape Backup: 0.1% Inbound bits/sec
-	- Version Control: 0.2% Inbound bits/sec
-	- 
-	- 
+	- Paper Copies: 0.1% Inbound bits/sec
+	- Tape Backup: 0.2% Inbound bits/sec
+	- Version Control: 0.3% Inbound bits/sec
+	- Cloud Backup: 0.4% Inbound bits/sec
 	- 9 9s Availability: 0.5% Inbound bits/sec
