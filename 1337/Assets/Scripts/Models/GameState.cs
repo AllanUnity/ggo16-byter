@@ -1,0 +1,8 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class GameState {
+
+	public float StoredBits {get; set;}
+
+}

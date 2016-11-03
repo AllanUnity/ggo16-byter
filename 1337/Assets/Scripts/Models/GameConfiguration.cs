@@ -3,9 +3,9 @@ using System.Collections;
 using SimpleJSON;
 using System;
 
-public class GameModel {
+public class GameConfiguration {
 
-	public static GameModel FromJSON(string jsonStr) {
+	public static GameConfiguration FromJSON(string jsonStr) {
 		JSONNode json = JSON.Parse(jsonStr);
 
 		Device[] devices = Device.FromArray(json["devices"].AsArray);
@@ -15,13 +15,13 @@ public class GameModel {
 		Debug.Log("\t devices: " + devices.Length);
 		Debug.Log("\t storageUnits: " + storageUnits.Length);
 		Debug.Log("}");
-		return new GameModel(devices, storageUnits);
+		return new GameConfiguration(devices, storageUnits);
 	}
 
 	private Device[] devices;
 	private StorageUnit[] storageUnits;
 
-	public GameModel(Device[] devices, StorageUnit[] storageUnits) {
+	public GameConfiguration(Device[] devices, StorageUnit[] storageUnits) {
 		this.devices = devices;
 		this.storageUnits = storageUnits;
 	}

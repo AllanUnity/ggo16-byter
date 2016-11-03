@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class RandomBitsText : MonoBehaviour {
 
-	private static float[] TextChangeDurationRange = new float[] {0.5f, 1.2f};
+	private static float TextChangeDuration = .5f;
 	private static string[] PossibleTextValues = new string[] {"0", "1"};
 	private static int NumCharacters = 8;
 
@@ -24,7 +24,7 @@ public class RandomBitsText : MonoBehaviour {
 	}
 
 	void UpdateText() {
-		timeToChange = Random.Range(TextChangeDurationRange[0], TextChangeDurationRange[1]);
+		timeToChange = TextChangeDuration;
 
 		string text = "";
 		for (int i = 0; i < NumCharacters; i++) {
