@@ -1,0 +1,263 @@
+{
+	"targets": [],
+
+	"devices": [
+		{
+			"name": "Flip Phone",
+			"out-bps": 8
+		},
+		{
+			"name": "Smart Phone",
+			"out-bps": 500
+		},
+		{
+			"name": "Tablet",
+			"out-bps": 1200
+		},
+		{
+			"name": "Laptop",
+			"out-bps": 40000
+		},
+		{
+			"name": "Desktop",
+			"out-bps": 150000
+		},
+		{
+			"name": "Server",
+			"out-bps": 8000000
+		},
+		{
+			"name": "Server Farm",
+			"out-bps": 650000000
+		},
+		{
+			"name": "The Cloud",
+			"out-bps": 18400000000
+		}
+	],
+
+	"storage": [
+		{
+			"name": "Floppy Drive",
+			"capacity": 400,
+		},
+		{
+			"name": "CD",
+			"capacity": 20000,
+		},
+		{
+			"name": "USB Drive",
+			"capacity": 1060000,
+		},
+		{
+			"name": "Hard Drive",
+			"capacity": 800000000,
+		},
+		{
+			"name": "FTP Server",
+			"capacity": 120000000000,
+		},
+		{
+			"name": "Storage SaaS",
+			"capacity": 480000000000000,
+		},
+		{
+			"name": "Data Warehouse",
+			"capacity": 1600000000000000,
+		},
+		{
+			"name": "The Cloud",
+			"capacity": 0
+		}
+	],
+
+	"upgrades": {
+		"types": [
+			{
+				"name": "Automation",
+				"id": 1,
+				"description": "Increases Inbound bits/sec"
+			},
+			{
+				"name": "Botnet",
+				"id": 2,
+				"description": "Reduces Output bits/sec Required to Attack"
+			},
+			{
+				"name": "Network",
+				"id": 3,
+				"description": "Increase Outbound bits/sec"
+			},
+			{
+				"name": "Compression",
+				"id": 4,
+				"description": "Increase Storage Capacity"
+			},
+			{
+				"name": "Replication",
+				"id": 5,
+				"description": "Automatically Generates Stored Bits"
+			},
+		],
+
+		"tiers": [
+			{
+				"name": "Tier 1",
+				"upgrades": [
+					{
+						"name": "Programmable Keyboard",
+						"type": 1,
+						"value": 0.01,
+						"quantity": 10
+					},
+					{
+						"name": "Workplace Botnet",
+						"type": 2,
+						"value": 0.05,
+						"quantity": 1
+					},
+					{
+						"name": "Dial-Up",
+						"type": 3,
+						"value": 0.01,
+						"quantity": 10
+					},
+					{
+						"name": "Lossy Compression",
+						"type": 4,
+						"value": 0.03,
+						"quantity": 2
+					},
+					{
+						"name": "Paper Copies",
+						"type": 5,
+						"value": 0.001,
+						"quantity": 20
+					}
+				]
+			},
+			{
+				"name": "Tier 2",
+				"upgrades": [
+					{
+						"name": "Scripting",
+						"type": 1,
+						"value": 0.02,
+						"quantity": 5
+					},
+					{
+						"name": "City Botnet",
+						"type": 2,
+						"value": 0.10,
+						"quantity": 1
+					},
+					{
+						"name": "2G",
+						"type": 3,
+						"value": 0.02,
+						"quantity": 20
+					},
+					{
+						"name": "Lossless Compression",
+						"type": 4,
+						"value": 0.06,
+						"quantity": 2
+					},
+					{
+						"name": "Tape Backup",
+						"type": 5,
+						"value": 0.002,
+						"quantity": 10
+					}
+				]
+			},
+			{
+				"name": "Tier 3",
+				"upgrades": [
+					{
+						"name": "Code Monkeys",
+						"type": 1,
+						"value": 0.05,
+						"quantity": 20
+					},
+					{
+						"name": "Regional Botnet",
+						"type": 2,
+						"value": 0.15,
+						"quantity": 1
+					},
+					{
+						"name": "3G",
+						"type": 3,
+						"value": 0.03,
+						"quantity": 15
+					},
+					{
+						"name": "ZIP",
+						"type": 4,
+						"value": 0.09,
+						"quantity": 2
+					},
+					{
+						"name": "Version Control",
+						"type": 5,
+						"value": 0.006,
+						"quantity": 1
+					}
+				]
+			},
+			{
+				"name": "Tier 4",
+				"upgrades": [
+					{
+						"name": "Open Source Projects",
+						"type": 1,
+						"value": 0.10,
+						"quantity": 10
+					},
+					{
+						"name": "Global Botnet",
+						"type": 2,
+						"value": 0.20,
+						"quantity": 1
+					},
+					{
+						"name": "4G",
+						"type": 4,
+						"value": 0.04,
+						"quantity": 10
+					},
+					{
+						"name": "Cloud Backup",
+						"type": 5,
+						"value": 0.004,
+						"quantity": 10
+					}
+				]
+			},
+			{
+				"name": "Tier 5",
+				"upgrades": [
+					{
+						"name": "Hardline",
+						"type": 3,
+						"value": 0.05,
+						"quantity": 5
+					},
+					{
+						"name": "Machine Learning",
+						"type": 4,
+						"value": 0.12,
+						"quantity": 20
+					},
+					{
+						"name": "9 9s Availability",
+						"type": 5,
+						"value": 0.01,
+						"quantity": 1
+					}
+				]
+			}
+		]
+	}
+}
