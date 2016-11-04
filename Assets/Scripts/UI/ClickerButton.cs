@@ -8,6 +8,7 @@ public class ClickerButton : MonoBehaviour {
 		GameManager.Instance.BitSpawnManager.IsSpawningBits = true;
 	}
 
+	// Note: This may be called multiple times.
 	public void OnTouchEnded() {
 		GameManager.Instance.BitSpawnManager.IsSpawningBits = false;
 	}

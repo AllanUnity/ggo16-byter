@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45006663, g: 0.49708605, b: 0.55956876, a: 1}
+  m_IndirectSpecularColor: {r: 0.37356448, g: 0.3811204, b: 0.35887685, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -114,10 +114,10 @@ Light:
   m_GameObject: {fileID: 8524407}
   m_Enabled: 1
   serializedVersion: 7
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
+  m_Type: 2
+  m_Color: {r: 0.41911763, g: 0.54330623, b: 1, a: 1}
+  m_Intensity: 2.5
+  m_Range: 100
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 8524407}
   m_LocalRotation: {x: 0.17364816, y: 0, z: 0, w: 0.9848078}
-  m_LocalPosition: {x: 0, y: 0, z: 14}
+  m_LocalPosition: {x: -10.49, y: 5.54, z: 3.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
   m_Children: []
@@ -303,8 +303,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -676,7 +676,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 03cff5e8cb9564441ae8c50a2a708e1c, type: 2}
+  - {fileID: 2100000, guid: 6136cd8bb795f4e25ac0dac96c348923, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -968,11 +968,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3d471e7202bd44d09bbe33f63f6cf93e, type: 3}
-    m_FontSize: 28
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 100
+    m_MaxSize: 112
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1101,8 +1101,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1374,8 +1374,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1551,8 +1551,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1666,8 +1666,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1739,9 +1739,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 2
-  m_ReferenceResolution: {x: 300, y: 400}
+  m_ReferenceResolution: {x: 900, y: 1600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1875,8 +1875,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2089,8 +2089,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2392,8 +2392,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -20, y: 60}
+  m_AnchoredPosition: {x: 0, y: 20}
+  m_SizeDelta: {x: -40, y: 200}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1020188707
 MonoBehaviour:
@@ -2537,6 +2537,23 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1020188710}
+          m_MethodName: OnTouchEnded
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!114 &1020188712
 MonoBehaviour:
@@ -2550,7 +2567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
 --- !u!1 &1024890599
 GameObject:
@@ -2638,11 +2655,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2021475738}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 60}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1205940324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2664,10 +2681,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3d471e7202bd44d09bbe33f63f6cf93e, type: 3}
-    m_FontSize: 8
+    m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 8
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -2772,8 +2789,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2953,8 +2970,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3134,8 +3151,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3413,8 +3430,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3602,8 +3619,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -3713,10 +3730,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2021475738}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 0, y: 90}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1847083905
 MonoBehaviour:
@@ -3739,11 +3756,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 3d471e7202bd44d09bbe33f63f6cf93e, type: 3}
-    m_FontSize: 14
+    m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 2
+    m_MaxSize: 48
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3949,8 +3966,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4011,7 +4028,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -40, y: 50}
+  m_SizeDelta: {x: -40, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2021475739
 MonoBehaviour:
@@ -4025,7 +4042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.8666667}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4071,7 +4088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
-  m_EffectDistance: {x: 1, y: -1}
+  m_EffectDistance: {x: 10, y: -10}
   m_UseGraphicAlpha: 1
 --- !u!1001 &2024220707
 Prefab:
@@ -4263,8 +4280,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4378,8 +4395,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -4493,8 +4510,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 2
-  m_Color: {r: 0.77931046, g: 1, b: 0, a: 1}
-  m_Intensity: 0.25
+  m_Color: {r: 0.9699797, g: 1, b: 0.45588237, a: 1}
+  m_Intensity: 0.5
   m_Range: 2
   m_SpotAngle: 30
   m_CookieSize: 10
