@@ -2368,6 +2368,7 @@ GameObject:
   - 114: {fileID: 1020188707}
   - 114: {fileID: 1020188710}
   - 114: {fileID: 1020188711}
+  - 114: {fileID: 1020188712}
   m_Layer: 0
   m_Name: Clicker Button
   m_TagString: Untagged
@@ -2392,7 +2393,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -20, y: 70}
+  m_SizeDelta: {x: -20, y: 60}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1020188707
 MonoBehaviour:
@@ -2413,10 +2414,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.66820693, g: 0.17517301, b: 0.88235295, a: 1}
-    m_HighlightedColor: {r: 0.6666667, g: 0.1764706, b: 0.882353, a: 1}
-    m_PressedColor: {r: 0.53870654, g: 0.15051904, b: 0.7058823, a: 1}
-    m_DisabledColor: {r: 0.5372549, g: 0.14901961, b: 0.7058824, a: 0.5019608}
+    m_NormalColor: {r: 0.22882122, g: 0.88235295, b: 0.17517301, a: 1}
+    m_HighlightedColor: {r: 0.227451, g: 0.882353, b: 0.1764706, a: 1}
+    m_PressedColor: {r: 0.20358755, g: 0.7352941, b: 0.1621972, a: 1}
+    m_DisabledColor: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2537,6 +2538,20 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &1020188712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1020188705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1024890599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3970,6 +3985,7 @@ GameObject:
   - 222: {fileID: 2021475740}
   - 114: {fileID: 2021475739}
   - 114: {fileID: 2021475741}
+  - 114: {fileID: 2021475742}
   m_Layer: 0
   m_Name: Top Menu
   m_TagString: Untagged
@@ -4009,7 +4025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.8666667}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4043,6 +4059,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtStoredBits: {fileID: 1847083905}
   txtInboundBitsPerSec: {fileID: 1205940324}
+--- !u!114 &2021475742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2021475737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.2}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &2024220707
 Prefab:
   m_ObjectHideFlags: 0
