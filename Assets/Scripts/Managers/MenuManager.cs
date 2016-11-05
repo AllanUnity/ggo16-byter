@@ -36,6 +36,10 @@ public class MenuManager : MonoBehaviour {
 		SetVisibleMenu(null); // TODO
 	}
 
+	public void CloseCurrentMenu() {
+		SetVisibleMenu(null);
+	}
+
 	void SetVisibleMenu(GameObject menu) {
 		hasOpenMenu = false;
 

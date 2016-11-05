@@ -10,12 +10,20 @@ public class Device {
 			JSONNode json = jsonArr[i];
 
 			devices[i] = new Device(
+				i,
 				json["name"].Value, 
-				json["capacity"].AsFloat
+				json["out-bps"].AsFloat
 			);
 		}
 
 		return devices;
+	}
+
+	private int id;
+	public int Id {
+		get {
+			return id;
+		}
 	}
 
 	private string name;
@@ -32,7 +40,8 @@ public class Device {
 		}
 	}
 
-	public Device(string name, float outBps) {
+	public Device(int id, string name, float outBps) {
+		this.id = id;
 		this.name = name;
 		this.outBps = outBps;
 	}

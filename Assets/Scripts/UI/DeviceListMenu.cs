@@ -17,16 +17,12 @@ public class DeviceListMenu : MonoBehaviour {
 	}
 
 	void Initialize() {
-
 		Device[] devices = GameManager.Instance.GameConfiguration.Devices;
 		for (int i = 0; i < devices.Length; i++) {
 			GameObject dev = (GameObject) Instantiate(deviceListItemPrefab, deviceListContainer.transform);
-
 			dev.transform.localScale = Vector3.one;
-		}
 
-//		RectTransform containerRect = deviceListContainer.GetComponent<RectTransform>();
-//		containerRect.sizeDelta = new Vector2(containerRect.sizeDelta.x, -(y / 3));
-//		containerRect.anchoredPosition = Vector3.zero;
+			dev.GetComponent<DeviceListMenuItem>().SetDevice(devices[i]);
+		}
 	}
 }
