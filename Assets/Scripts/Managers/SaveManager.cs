@@ -32,17 +32,23 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	public GameState LoadGame() {
-		string gameSavePath = Application.persistentDataPath + GameSaveFilename;
-		if(!File.Exists(gameSavePath)) {
-			Debug.Log("Game save not found, starting a new game!");
-			return new GameState();
+		GameState gameState = null;
+
+		try {
+			string gameSavePath = Application.persistentDataPath + GameSaveFilename;
+
+			if(File.Exists(gameSavePath)) {
+				BinaryFormatter bf = new BinaryFormatter();
+				FileStream file = File.Open(gameSavePath, FileMode.Open);
+				gameState = (GameState) bf.Deserialize(file);
+				file.Close();
+			} else {
+				Debug.Log("Game save not found, starting a new game!");
+			}
+		} catch(System.Exception ex) {
+			Debug.LogError("Faled to load saved game due to: " + ex.ToString());
 		}
 
-		BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Open(gameSavePath, FileMode.Open);
-		GameState gameState = (GameState) bf.Deserialize(file);
-		file.Close();
-
-		return gameState;
+		return gameState != null ? gameState : new GameState();
 	}
 }

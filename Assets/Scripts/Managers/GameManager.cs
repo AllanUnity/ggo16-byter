@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public StorageUnitManager StorageUnitManager { get; set; }
 	public DeviceManager DeviceManager { get; set; }
 	public SaveManager SaveManager { get; set; }
+	public MenuManager MenuManager { get; set; }
 
 	public GameConfiguration GameConfiguration { get; set; }
 	public GameState GameState { get; set; }
@@ -26,6 +27,7 @@ public class GameManager : MonoBehaviour {
 		StorageUnitManager = GetComponent<StorageUnitManager>();
 		DeviceManager = GetComponent<DeviceManager>();
 		SaveManager = GetComponent<SaveManager>();
+		MenuManager = GetComponent<MenuManager>();
 
 		// Initialize the game.
 		LoadConfiguration();

@@ -11,6 +11,10 @@ public class CameraInputHandler : MonoBehaviour {
 	private int touchFingerId; // Touch mode only
 
 	void Update() {
+		if (GameManager.Instance.MenuManager.HasOpenMenu) {
+			return;
+		}
+
 		#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
 		HandleTouch();
 		#else

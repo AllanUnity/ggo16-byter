@@ -17,9 +17,32 @@ public class GameConfiguration {
 	}
 
 	private Device[] devices;
+	public Device[] Devices {
+		get {
+			return devices;
+		}
+	}
+
 	private StorageUnit[] storageUnits;
+	public StorageUnit[] StorageUnits {
+		get {
+			return storageUnits;
+		}
+	}
+
 	private UpgradeType[] upgradeTypes;
+	public UpgradeType[] UpgradeTypes {
+		get {
+			return upgradeTypes;
+		}
+	}
+
 	private UpgradeTier[] upgradeTiers;
+	public UpgradeTier[] UpgradeTiers {
+		get {
+			return UpgradeTiers;
+		}
+	}
 
 	public GameConfiguration(Device[] devices, StorageUnit[] storageUnits, UpgradeType[] upgradeTypes, UpgradeTier[] upgradeTiers) {
 		this.devices = devices;
