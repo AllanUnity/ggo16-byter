@@ -8,7 +8,10 @@ public class StorageUnit {
 		for (int i = 0; i < storageUnits.Length; i++) {
 			JSONNode json = jsonArr[i];
 
-			storageUnits[i] = new StorageUnit(json["name"].Value, json["capacity"].AsFloat);
+			storageUnits[i] = new StorageUnit(
+				json["name"].Value, 
+				json["capacity"].AsFloat
+			);
 		}
 
 		return storageUnits;

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BitPool : ObjectPool {
 
-	private static float yOffset = 1.0f;
-
 	private int poolId;
 	private Vector3 spawnPosition;
 	private Transform[] checkpoint1;

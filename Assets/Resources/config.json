@@ -1,5 +1,24 @@
 {
-	"targets": [],
+	"targets": [
+		{
+			"name": "Old Laptop"
+		},
+		{
+			"name": "Friend's Cell Phone"
+		},
+		{
+			"name": "Company Intranet"
+		},
+		{
+			"name": "Mayor's Office"
+		},
+		{
+			"name": "Social Network"
+		},
+		{
+			"name": "Federal Government"
+		}
+	],
 
 	"devices": [
 		{

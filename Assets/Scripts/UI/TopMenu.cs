@@ -10,13 +10,20 @@ public class TopMenu : MonoBehaviour {
 	private float inboundTime;
 	private float inboundBits;
 	private float previousBitCount;
+
+	void Start() {
+		// Initialize the previous bit count with the starting bit count.
+		previousBitCount = GameManager.Instance.GameState.StoredBits;
+	}
 	
 	// Update is called once per frame
 	void Update () {
 		float storedBits = GameManager.Instance.GameState.StoredBits;
 
 		// Update the number of stored bits
-		txtStoredBits.text = BitUtil.StringFormat(storedBits, BitUtil.TextFormat.Long);
+		if (storedBits != previousBitCount) {
+			txtStoredBits.text = BitUtil.StringFormat(storedBits, BitUtil.TextFormat.Long);
+		}
 
 		// Update the Inbound bits/sec.
 		inboundBits += storedBits - previousBitCount;

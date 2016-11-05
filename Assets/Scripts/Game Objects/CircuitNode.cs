@@ -4,24 +4,26 @@ using System.Collections;
 public class CircuitNode : MonoBehaviour {
 
 	private static float OnStateDuration = 1.0f;
-	private static float OnStateLightIntensity = .25f;
+	private static float OnStateLightIntensity = 1f;
 	private static float OffStateLightIntensity = 0f;
-	private static float LightIntensityChangePerTick = 0.03f;
+	private static float LightIntensityChangePerTick = 0.05f;
 
 	public Material onMaterial;
 	public Material offMaterial;
 
 	private MeshRenderer meshRenderer;
-	private Light light;
+	private Light onLight;
 
 	private float timeSinceBitAbove = OnStateDuration;
 
 	void Start() {
 		meshRenderer = GetComponent<MeshRenderer>();
-		light = GetComponent<Light>();
+		onLight = GetComponent<Light>();
 
 		SetOn(false);
-		light.intensity = OffStateLightIntensity;
+		// Immediately set the OffState Intensity because the lights may have been left on
+		// in the editor.
+		onLight.intensity = OffStateLightIntensity;
 	}
 
 	void Update() {
@@ -40,9 +42,9 @@ public class CircuitNode : MonoBehaviour {
 		meshRenderer.material = on ? onMaterial : offMaterial;
 
 		if (on) {
-			light.intensity = Mathf.Min(OnStateLightIntensity, light.intensity + LightIntensityChangePerTick);
+			onLight.intensity = Mathf.Min(OnStateLightIntensity, onLight.intensity + LightIntensityChangePerTick);
 		} else {
-			light.intensity = Mathf.Max(OffStateLightIntensity, light.intensity - LightIntensityChangePerTick);
+			onLight.intensity = Mathf.Max(OffStateLightIntensity, onLight.intensity - LightIntensityChangePerTick);
 		}
 	}
 }

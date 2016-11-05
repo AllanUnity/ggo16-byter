@@ -52,15 +52,11 @@ public class BitUtil {
 			}
 		}
 
-		// Format with UP TO three decimal places, by trimming trailing zeros (and the decimal point if necessary).
-		string valueString = valueAsRep.ToString("0.000");
-		char[] valueChars = valueString.ToCharArray();
-		for (int i = valueString.Length - 1; i >= valueString.IndexOf('.'); i --) {
-			if (valueChars[i] == '0' || valueChars[i] == '.') {
-				valueString = valueString.Substring(0, i);
-			} else {
-				break;
-			}
+		string valueString;
+		if (rep == Representation.Bit) {
+			valueString = valueAsRep.ToString("0");
+		} else {
+			valueString = valueAsRep.ToString("0.000");
 		}
 
 		return valueString + " " + suffix;

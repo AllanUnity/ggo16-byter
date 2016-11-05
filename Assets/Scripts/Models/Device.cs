@@ -9,14 +9,28 @@ public class Device {
 		for (int i = 0; i < devices.Length; i++) {
 			JSONNode json = jsonArr[i];
 
-			devices[i] = new Device(json["name"].Value, json["capacity"].AsFloat);
+			devices[i] = new Device(
+				json["name"].Value, 
+				json["capacity"].AsFloat
+			);
 		}
 
 		return devices;
 	}
 
 	private string name;
+	public string Name {
+		get {
+			return name;
+		}
+	}
+
 	private float outBps;
+	public float OutBps {
+		get {
+			return outBps;
+		}
+	}
 
 	public Device(string name, float outBps) {
 		this.name = name;
