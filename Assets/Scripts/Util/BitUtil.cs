@@ -37,7 +37,7 @@ public class BitUtil {
 	};
 
 	// TODO: This whole method is a nasty mess. Come back and fix it.
-	public static string StringFormat(float bits, TextFormat format) {
+	public static string StringFormat(float bits, TextFormat format, bool trim = false) {
 		Representation rep = GetRepresentation(bits);
 		float valueAsRep = GetBitsInRepresentation(rep, bits);
 
@@ -57,6 +57,16 @@ public class BitUtil {
 			valueString = valueAsRep.ToString("0");
 		} else {
 			valueString = valueAsRep.ToString("0.000");
+		}
+
+		if (trim) {
+			while(valueString.EndsWith("0")) {
+				valueString = valueString.Remove(valueString.Length - 1);
+			}
+
+			if (valueString.EndsWith(".")) {
+				valueString = valueString.Remove(valueString.Length - 1);
+			}
 		}
 
 		return valueString + " " + suffix;

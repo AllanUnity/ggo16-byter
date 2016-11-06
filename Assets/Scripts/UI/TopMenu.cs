@@ -12,7 +12,9 @@ public class TopMenu : MonoBehaviour {
 	private float previousBitCount;
 
 	void Start() {
-		// Initialize the previous bit count with the starting bit count.
+		// Set the stored bit text immediately, which ensures there is no jump from zero to the saved number of bits.
+		// This is also important to set the previousBitCount, otherwise the inbound bits/sec will jump crazy high at the very beginning.
+		SetStoredBitsText();
 		previousBitCount = GameManager.Instance.GameState.StoredBits;
 	}
 	
@@ -22,12 +24,12 @@ public class TopMenu : MonoBehaviour {
 
 		// Update the number of stored bits
 		if (storedBits != previousBitCount) {
-			txtStoredBits.text = BitUtil.StringFormat(storedBits, BitUtil.TextFormat.Long);
+			SetStoredBitsText();
 		}
 
 		// Update the Inbound bits/sec.
 		inboundBits += storedBits - previousBitCount;
-		previousBitCount = storedBits;
+		previousBitCount = GameManager.Instance.GameState.StoredBits;
 		inboundTime += Time.deltaTime;
 		if (inboundTime >= 1.0f) {
 			txtInboundBitsPerSec.text = BitUtil.StringFormat(inboundBits, BitUtil.TextFormat.Short) + "/sec.";
@@ -35,5 +37,9 @@ public class TopMenu : MonoBehaviour {
 			inboundTime = 0f;
 			inboundBits = 0f;
 		}
+	}
+
+	void SetStoredBitsText() {
+		txtStoredBits.text = BitUtil.StringFormat(GameManager.Instance.GameState.StoredBits, BitUtil.TextFormat.Long);
 	}
 }

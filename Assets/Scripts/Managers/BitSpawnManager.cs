@@ -46,6 +46,10 @@ public class BitSpawnManager : MonoBehaviour {
 	 */
 	public void OnBitReachedTarget(Bit bit) {
 		bitPools[bit.PoolId].ReturnInstance(bit.gameObject);
-		GameManager.Instance.GameState.StoredBits ++;
+
+		GameManager.Instance.GameState.StoredBits  = Mathf.Min(
+			GameManager.Instance.GameState.StoredBits + 1, 
+			GameManager.Instance.GameState.StorageCapacity
+		);
 	}
 }

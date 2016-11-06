@@ -9,12 +9,20 @@ public class StorageUnit {
 			JSONNode json = jsonArr[i];
 
 			storageUnits[i] = new StorageUnit(
+				i,
 				json["name"].Value, 
 				json["capacity"].AsFloat
 			);
 		}
 
 		return storageUnits;
+	}
+
+	private int id;
+	public int Id {
+		get {
+			return id;
+		}
 	}
 	
 	private string name;
@@ -31,9 +39,15 @@ public class StorageUnit {
 		}
 	}
 
-	public StorageUnit(string name, float capacity) {
+	public StorageUnit(int id, string name, float capacity) {
+		this.id = id;
 		this.name = name;
-		this.capacity = capacity;
+
+		if (capacity > 0) {
+			this.capacity = capacity;
+		} else {
+			this.capacity = float.MaxValue;
+		}
 	}
 
 	public bool IsInfinite() {

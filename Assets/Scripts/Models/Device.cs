@@ -12,7 +12,8 @@ public class Device {
 			devices[i] = new Device(
 				i,
 				json["name"].Value, 
-				json["out-bps"].AsFloat
+				json["out-bps"].AsFloat,
+				json["cost"].AsFloat
 			);
 		}
 
@@ -40,10 +41,18 @@ public class Device {
 		}
 	}
 
-	public Device(int id, string name, float outBps) {
+	private float cost;
+	public float Cost {
+		get {
+			return cost;
+		}
+	}
+
+	public Device(int id, string name, float outBps, float cost) {
 		this.id = id;
 		this.name = name;
 		this.outBps = outBps;
+		this.cost = cost;
 	}
 
 }

@@ -23,42 +23,50 @@
 	"devices": [
 		{
 			"name": "Flip Phone",
-			"out-bps": 8
+			"out-bps": 8,
+			"cost": 0
 		},
 		{
 			"name": "Smart Phone",
-			"out-bps": 500
+			"out-bps": 500,
+			"cost": 4060
 		},
 		{
 			"name": "Tablet",
-			"out-bps": 1200
+			"out-bps": 1200,
+			"cost": 12000
 		},
 		{
 			"name": "Laptop",
-			"out-bps": 40000
+			"out-bps": 40000,
+			"cost": 230000
 		},
 		{
 			"name": "Desktop",
-			"out-bps": 150000
+			"out-bps": 150000,
+			"cost": 2467980
 		},
 		{
 			"name": "Server",
-			"out-bps": 8000000
+			"out-bps": 8000000,
+			"cost": 900000000
 		},
 		{
 			"name": "Server Farm",
-			"out-bps": 650000000
+			"out-bps": 650000000,
+			"cost": 978000000000
 		},
 		{
 			"name": "The Cloud",
-			"out-bps": 18400000000
+			"out-bps": 18400000000,
+			"cost": 7654500000000000
 		}
 	],
 
 	"storage": [
 		{
 			"name": "Floppy Drive",
-			"capacity": 400,
+			"capacity": 4000,
 		},
 		{
 			"name": "CD",
