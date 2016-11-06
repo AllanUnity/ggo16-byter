@@ -112,7 +112,7 @@ GameObject:
   - 222: {fileID: 222000013972157452}
   - 114: {fileID: 114000013826689798}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Device Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,7 +405,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114000010061589828}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114000012920918538}
+        m_MethodName: BuyDevice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114000012920918538
@@ -421,12 +432,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentDeviceBackgroundColor: {r: 0.56078434, g: 0.03529412, b: 0.8352941, a: 1}
   currentDeviceTextColor: {r: 1, g: 1, b: 1, a: 1}
-  btnBuyEnabled: {r: 0, g: 0, b: 0, a: 0}
-  btnBuyDisabled: {r: 0, g: 0, b: 0, a: 0}
   txtDeviceName: {fileID: 114000010358603912}
   txtOutboundBps: {fileID: 114000010018408864}
   txtPrice: {fileID: 114000011565184620}
   btnBuy: {fileID: 114000011748772710}
+  imgDeviceIcon: {fileID: 114000013826689798}
 --- !u!114 &114000013826689798
 MonoBehaviour:
   m_ObjectHideFlags: 1

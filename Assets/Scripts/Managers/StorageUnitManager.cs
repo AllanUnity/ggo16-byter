@@ -6,6 +6,7 @@ public class StorageUnitManager : MonoBehaviour {
 	public Transform spawnPosition;
 	public GameObject[] storageUnitPrefabs;
 
+	private GameObject currentStorageUnitPrefab;
 	private int storageUnitId = -1;
 
 	public void SetStorageUnit(int storageUnitId) {
@@ -20,7 +21,13 @@ public class StorageUnitManager : MonoBehaviour {
 			spawnPosition.position.z
 		);
 
+		if (currentStorageUnitPrefab != null) {
+			Destroy(currentStorageUnitPrefab);
+		}
+		currentStorageUnitPrefab = storageUnit;
+
 		this.storageUnitId = storageUnitId;
+		GameManager.Instance.GameState.StorageUnitId = storageUnitId;
 	}
 
 }
