@@ -4,6 +4,8 @@ using System.Collections;
 public class MenuManager : MonoBehaviour {
 
 	public DeviceListMenu deviceList;
+	public StorageUnitListMenu storageUnitList;
+	public UpgradeListMenu upgradeList;
 
 	private GameObject[] menus;
 
@@ -17,7 +19,9 @@ public class MenuManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		menus = new GameObject[]{
-			deviceList.gameObject
+			deviceList.gameObject,
+			storageUnitList.gameObject,
+			upgradeList.gameObject,
 		};
 
 		// Hide any open menus left by the editor
@@ -29,11 +33,11 @@ public class MenuManager : MonoBehaviour {
 	}
 
 	public void DisplayStorageUnitList() {
-		SetVisibleMenu(null); // TODO
+		SetVisibleMenu(storageUnitList.gameObject);
 	}
 
 	public void DisplayUpgradeList() {
-		SetVisibleMenu(null); // TODO
+		SetVisibleMenu(upgradeList.gameObject);
 	}
 
 	public void CloseCurrentMenu() {
