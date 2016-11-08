@@ -26,6 +26,10 @@ public class CameraInputHandler : MonoBehaviour {
 		// Do nothing if there is no touch.
 		if (Input.touchCount == 0) {
 			return;
+		} 
+		// If the clicker is being pressed, ignore the touch.
+		else if (GameManager.Instance.BitSpawnManager.IsSpawningBits) {
+			return;
 		}
 
 		// If the touch began, capture its position and its finger ID.

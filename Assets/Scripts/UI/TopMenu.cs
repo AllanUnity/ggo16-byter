@@ -16,6 +16,9 @@ public class TopMenu : MonoBehaviour {
 		// This is also important to set the previousBitCount, otherwise the inbound bits/sec will jump crazy high at the very beginning.
 		SetStoredBitsText();
 		previousBitCount = GameManager.Instance.GameState.StoredBits;
+
+		// Clear text left by the editor
+		txtInboundBitsPerSec.text = "";
 	}
 	
 	// Update is called once per frame

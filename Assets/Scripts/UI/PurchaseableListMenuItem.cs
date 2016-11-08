@@ -38,7 +38,7 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 	public void ReloadUI() {
 		txtName.text = purchaseable.GetName();
 		txtDescription.text = purchaseable.GetDescription();
-		txtCost.text = BitUtil.StringFormat(purchaseable.GetCost(), BitUtil.TextFormat.Short, true);
+		txtCost.text = BitUtil.StringFormat(purchaseable.GetCost(), BitUtil.TextFormat.Short, true, true);
 		imgIcon.sprite = purchaseable.GetIcon();
 
 		switch(presenter.GetPurchaseState(menuId, purchaseable)) {

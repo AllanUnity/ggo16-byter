@@ -7,6 +7,6 @@ public class PurchaseableTierMenuItem : MonoBehaviour {
 	public Text txtTitle;
 
 	public void SetTier(int tierId) {
-		txtTitle.text = "Tier " + (tierId + 1);
+		txtTitle.text = "TIER " + (tierId + 1);
 	}
 }

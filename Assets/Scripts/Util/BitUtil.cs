@@ -37,7 +37,7 @@ public class BitUtil {
 	};
 
 	// TODO: This whole method is a nasty mess. Come back and fix it.
-	public static string StringFormat(float bits, TextFormat format, bool trim = false) {
+	public static string StringFormat(float bits, TextFormat format, bool trim = false, bool breakLine = false) {
 		Representation rep = GetRepresentation(bits);
 		float valueAsRep = GetBitsInRepresentation(rep, bits);
 
@@ -69,7 +69,7 @@ public class BitUtil {
 			}
 		}
 
-		return valueString + " " + suffix;
+		return valueString + (breakLine ? "\n" : " ") + suffix;
 	}
 
 	public static Representation GetRepresentation(float bits) {

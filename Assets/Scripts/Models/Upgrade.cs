@@ -101,6 +101,6 @@ public class Upgrade : Purchaseable {
 	}
 
 	public Sprite GetIcon() {
-		return null;
+		return null; // TODO
 	}
 }

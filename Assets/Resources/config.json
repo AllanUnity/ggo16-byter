@@ -111,27 +111,27 @@
 			{
 				"name": "Automation",
 				"id": 1,
-				"description": "Increase Inbound BPS by @ while holding button"
+				"description": "+@ Inbound BPS while holding button"
 			},
 			{
 				"name": "Botnet",
 				"id": 2,
-				"description": "Reduce Output BPS Required to Attack by @"
+				"description": "-@ Output BPS Required to Attack"
 			},
 			{
 				"name": "Network",
 				"id": 3,
-				"description": "Increase Outbound BPS by @"
+				"description": "+@ Outbound BPS"
 			},
 			{
 				"name": "Compression",
 				"id": 4,
-				"description": "Increase Storage Capacity by @"
+				"description": "+@ Storage Capacity"
 			},
 			{
 				"name": "Replication",
 				"id": 5,
-				"description": "Automatically Generates @ Stored Bits per second"
+				"description": "Generate @ of Stored Bits per second"
 			},
 		],
 

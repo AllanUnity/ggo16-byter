@@ -65,7 +65,7 @@ public class Device : Purchaseable {
 	}
 
 	public string GetDescription() {
-		return BitUtil.StringFormat(OutBps, BitUtil.TextFormat.Long, true);
+		return "Outbound BPS: " + BitUtil.StringFormat(OutBps, BitUtil.TextFormat.Long, true);
 	}
 
 	public float GetCost() {
