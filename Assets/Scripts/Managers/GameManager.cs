@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	public BitSpawnManager BitSpawnManager { get; set; }
 	public StorageUnitManager StorageUnitManager { get; set; }
 	public DeviceManager DeviceManager { get; set; }
+	public UpgradeManager UpgradeManager { get; set; }
 	public SaveManager SaveManager { get; set; }
 	public MenuManager MenuManager { get; set; }
 
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour {
 		BitSpawnManager = GetComponent<BitSpawnManager>();
 		StorageUnitManager = GetComponent<StorageUnitManager>();
 		DeviceManager = GetComponent<DeviceManager>();
+		UpgradeManager = GetComponent<UpgradeManager>();
 		SaveManager = GetComponent<SaveManager>();
 		MenuManager = GetComponent<MenuManager>();
 
@@ -43,5 +46,9 @@ public class GameManager : MonoBehaviour {
 		GameState = SaveManager.LoadGame();
 		StorageUnitManager.SetStorageUnit(GameState.StorageUnitId);
 		DeviceManager.SetDevice(GameState.DeviceId);
+
+		if (GameManager.Instance.GameState.PurchasedUpgrades == null) {
+			GameManager.Instance.GameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
+		}
 	}
 }

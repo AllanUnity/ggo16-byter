@@ -40,7 +40,7 @@ public class GameConfiguration {
 	private UpgradeTier[] upgradeTiers;
 	public UpgradeTier[] UpgradeTiers {
 		get {
-			return UpgradeTiers;
+			return upgradeTiers;
 		}
 	}
 

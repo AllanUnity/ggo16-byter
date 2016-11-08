@@ -1,14 +1,17 @@
 ﻿using System;
 using SimpleJSON;
+using UnityEngine;
 
-public class Upgrade {
+public class Upgrade : Purchaseable {
 
-	public static Upgrade[] FromArray(JSONArray jsonArr) {
+	public static Upgrade[] FromArray(int tierId, JSONArray jsonArr) {
 		Upgrade[] upgrades = new Upgrade[jsonArr.Count];
 		for (int i = 0; i < upgrades.Length; i++) {
 			JSONNode json = jsonArr[i];
 
 			upgrades[i] = new Upgrade(
+				(tierId * 100) + i,
+				tierId,
 				json["name"].Value, 
 				json["type"].AsInt, 
 				json["value"].AsFloat, 
@@ -17,6 +20,20 @@ public class Upgrade {
 		}
 
 		return upgrades;
+	}
+
+	private int id;
+	public int Id {
+		get {
+			return id;
+		}
+	}
+
+	private int tierId;
+	public int TierId {
+		get {
+			return tierId;
+		}
 	}
 
 	private string name;
@@ -47,10 +64,43 @@ public class Upgrade {
 		}
 	}
 
-	public Upgrade(string name, int type, float value, int quantity) {
+	public Upgrade(int id, int tierId, string name, int type, float value, int quantity) {
+		this.id = id;
+		this.tierId = tierId;
 		this.name = name;
 		this.type = type;
 		this.value = value;
 		this.quantity = quantity;
+	}
+
+	//--- Purchaseable Implementation ---//
+	public int GetId() {
+		return id;
+	}
+
+	public string GetName() {
+		return name;
+	}
+
+	public string GetDescription() {
+		return GameManager.Instance.UpgradeManager.GetDescription(type, value);
+	}
+
+	public float GetCost() {
+		int purchasedCount = GameManager.Instance.UpgradeManager.PurchasedCount(id);
+
+		return ((tierId + 1) * (purchasedCount + 1) / ((float) quantity + 1 - purchasedCount)) * ((tierId+1) * 1000);
+	}
+
+	public int GetQuantity() {
+		return quantity;
+	}
+
+	public int GetTier() {
+		return tierId;
+	}
+
+	public Sprite GetIcon() {
+		return null;
 	}
 }

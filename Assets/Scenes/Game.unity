@@ -2968,8 +2968,8 @@ GameObject:
   - 224: {fileID: 752410844}
   - 222: {fileID: 752410846}
   - 114: {fileID: 752410845}
-  - 114: {fileID: 752410847}
   - 114: {fileID: 752410848}
+  - 114: {fileID: 752410847}
   m_Layer: 0
   m_Name: Device List
   m_TagString: Untagged
@@ -3038,13 +3038,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 752410843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de14183eb5f1040d9978a35391704966, type: 3}
+  m_Script: {fileID: 11500000, guid: c328ffda1f7094efbb57ea75fb7ede50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollView: {fileID: 0}
-  deviceListContainer: {fileID: 966447657}
-  deviceListItemPrefab: {fileID: 1000011315071158, guid: ac6ffa21ddc124bae8d575e9a7456c8b,
+  container: {fileID: 966447657}
+  purchaseableListItemPrefab: {fileID: 1000011315071158, guid: ac6ffa21ddc124bae8d575e9a7456c8b,
     type: 2}
+  purchaseableTierHeaderPrefab: {fileID: 0}
 --- !u!114 &752410848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3192,6 +3192,7 @@ GameObject:
   - 114: {fileID: 764563708}
   - 114: {fileID: 764563709}
   - 114: {fileID: 764563710}
+  - 114: {fileID: 764563711}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -3262,6 +3263,8 @@ MonoBehaviour:
   spawnPosition: {fileID: 1840645629}
   storageUnitPrefabs:
   - {fileID: 1000013123410064, guid: 4c8930fa36c134b3abaa3827ebde6436, type: 2}
+  storageUnitIcons:
+  - {fileID: 21300000, guid: 958e3f2751c8b4035813ab58ced7f02c, type: 3}
 --- !u!114 &764563708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3279,11 +3282,19 @@ MonoBehaviour:
   - {fileID: 1000012680736710, guid: ed43af38a450444178aa5bd03a32310d, type: 2}
   - {fileID: 1000010170196336, guid: 56ba99a91fac84668874ed5bfc4a0369, type: 2}
   - {fileID: 1000010631552778, guid: a2e18aa6d1c9646579f81324e9b84dcc, type: 2}
+  - {fileID: 1000010452433392, guid: 2a228673127824463b7559def44fe2c9, type: 2}
+  - {fileID: 1000014089359988, guid: 38326c4ae2d114483978f91e9632f51c, type: 2}
+  - {fileID: 1000012270099220, guid: a552a4d3268094498a2473b597174c9a, type: 2}
+  - {fileID: 1000010757696038, guid: 6c49b8f43b6864c33961caea24d17a72, type: 2}
   deviceIcons:
   - {fileID: 21300000, guid: a9f92396eccd844d59f50a3a6c1de681, type: 3}
   - {fileID: 21300000, guid: 8e615c7fc7c284bc39fb31bb5e6b9caa, type: 3}
   - {fileID: 21300000, guid: 84b531c363251498e8ef99eced9b5210, type: 3}
   - {fileID: 21300000, guid: 852d0af4deafc4ba9bb45b696d9296df, type: 3}
+  - {fileID: 21300000, guid: 571987790a0324197b257e7a69139f4a, type: 3}
+  - {fileID: 21300000, guid: d87d3798fa9a4455298b634a6c79685e, type: 3}
+  - {fileID: 21300000, guid: cd91e7cdeb58345b4ba234dfc4a06017, type: 3}
+  - {fileID: 21300000, guid: fbc0415f2b73d49bd87af292b272272c, type: 3}
 --- !u!114 &764563709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3309,6 +3320,17 @@ MonoBehaviour:
   deviceList: {fileID: 752410847}
   storageUnitList: {fileID: 1759319120}
   upgradeList: {fileID: 1177033073}
+--- !u!114 &764563711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 764563703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fa51022097b47d589a982b4d895071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &780252002
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,7 +4862,7 @@ GameObject:
   - 114: {fileID: 1177033074}
   - 114: {fileID: 1177033073}
   m_Layer: 0
-  m_Name: Upgrsde List
+  m_Name: Upgrade List
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4874,9 +4896,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177033071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3decf09499474a16bac4ecca2a509b5, type: 3}
+  m_Script: {fileID: 11500000, guid: c328ffda1f7094efbb57ea75fb7ede50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  container: {fileID: 1742199088}
+  purchaseableListItemPrefab: {fileID: 1000011315071158, guid: ac6ffa21ddc124bae8d575e9a7456c8b,
+    type: 2}
+  purchaseableTierHeaderPrefab: {fileID: 1000011473341814, guid: fec304be0f683427394eb89cd63b8c98,
+    type: 2}
 --- !u!114 &1177033074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6414,7 +6441,7 @@ GameObject:
   - 33: {fileID: 1453243802}
   - 23: {fileID: 1453243801}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Backdrop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7231,9 +7258,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1759319118}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9032569dbc68e4517a5092dbab8f2b6f, type: 3}
+  m_Script: {fileID: 11500000, guid: c328ffda1f7094efbb57ea75fb7ede50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  container: {fileID: 1465235117}
+  purchaseableListItemPrefab: {fileID: 1000011315071158, guid: ac6ffa21ddc124bae8d575e9a7456c8b,
+    type: 2}
+  purchaseableTierHeaderPrefab: {fileID: 0}
 --- !u!114 &1759319121
 MonoBehaviour:
   m_ObjectHideFlags: 0

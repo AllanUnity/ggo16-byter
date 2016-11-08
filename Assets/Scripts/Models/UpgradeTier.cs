@@ -9,12 +9,20 @@ public class UpgradeTier {
 			JSONNode json = jsonArr[i];
 
 			tiers[i] = new UpgradeTier(
+				i,
 				json["name"].Value,
-				Upgrade.FromArray(json["upgrades"].AsArray)
+				Upgrade.FromArray(i, json["upgrades"].AsArray)
 			);
 		}
 
 		return tiers;
+	}
+
+	private int id;
+	public int Id {
+		get {
+			return id;
+		}
 	}
 
 	private string name;
@@ -31,7 +39,8 @@ public class UpgradeTier {
 		}
 	}
 
-	public UpgradeTier(string name, Upgrade[] upgrades) {
+	public UpgradeTier(int id, string name, Upgrade[] upgrades) {
+		this.id = id;
 		this.name = name;
 		this.upgrades = upgrades;
 	}

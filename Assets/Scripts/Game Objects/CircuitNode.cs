@@ -26,7 +26,7 @@ public class CircuitNode : MonoBehaviour {
 		onLight.intensity = OffStateLightIntensity;
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		Debug.DrawRay(transform.position, Vector3.up, Color.cyan);
 
 		if (Physics.Raycast(transform.position, Vector3.up)) {

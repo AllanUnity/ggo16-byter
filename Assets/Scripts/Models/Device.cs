@@ -2,7 +2,7 @@
 using System.Collections;
 using SimpleJSON;
 
-public class Device {
+public class Device : Purchaseable {
 
 	public static Device[] FromArray(JSONArray jsonArr) {
 		Device[] devices = new Device[jsonArr.Count];
@@ -55,4 +55,33 @@ public class Device {
 		this.cost = cost;
 	}
 
+	//--- Purchaseable Implementation ---//
+	public int GetId() {
+		return Id;
+	}
+
+	public string GetName() {
+		return Name;
+	}
+
+	public string GetDescription() {
+		return BitUtil.StringFormat(OutBps, BitUtil.TextFormat.Long, true);
+	}
+
+	public float GetCost() {
+		return Cost;
+	}
+
+	public int GetQuantity() {
+		return 1;
+	}
+
+	public int GetTier() {
+		return 0;
+	}
+
+	public Sprite GetIcon() {
+		return GameManager.Instance.DeviceManager.GetDeviceIcon(Id);
+	}
+		
 }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [System.Serializable]
 public class GameState {
@@ -10,6 +11,10 @@ public class GameState {
 
 	public int DeviceId { get; set; }
 	public int StorageUnitId { get; set; }
+
+	public int NextTargetId { get; set; } // The lowest, unhacked target. Starts at zero for the first target.
+
+	public List<PurchasedUpgrade> PurchasedUpgrades { get; set; }
 
 	//--- Transient ---//
 

@@ -3,6 +3,12 @@ using SimpleJSON;
 
 public class UpgradeType {
 
+	public const int Automation = 1;
+	public const int Botnet = 2;
+	public const int Network = 3;
+	public const int Compression = 4;
+	public const int Replication = 5;
+
 	public static UpgradeType[] FromArray(JSONArray jsonArr) {
 		UpgradeType[] upgradeTypes = new UpgradeType[jsonArr.Count];
 		for (int i = 0; i < upgradeTypes.Length; i++) {

@@ -67,34 +67,42 @@
 		{
 			"name": "Floppy Drive",
 			"capacity": 8000,
+			"cost": 0
 		},
 		{
 			"name": "CD",
 			"capacity": 20000,
+			"cost": 7500
 		},
 		{
 			"name": "USB Drive",
 			"capacity": 1060000,
+			"cost": 22000
 		},
 		{
 			"name": "Hard Drive",
 			"capacity": 800000000,
+			"cost": 1420000
 		},
 		{
 			"name": "FTP Server",
 			"capacity": 120000000000,
+			"cost": 1000000000
 		},
 		{
 			"name": "Storage SaaS",
 			"capacity": 480000000000000,
+			"cost": 320000000000
 		},
 		{
 			"name": "Data Warehouse",
 			"capacity": 1600000000000000,
+			"cost": 980000000000000
 		},
 		{
 			"name": "The Cloud",
-			"capacity": 0
+			"capacity": 0,
+			"cost": 41600000000000000
 		}
 	],
 
@@ -103,27 +111,27 @@
 			{
 				"name": "Automation",
 				"id": 1,
-				"description": "Increases Inbound bits/sec"
+				"description": "Increase Inbound BPS by @ while holding button"
 			},
 			{
 				"name": "Botnet",
 				"id": 2,
-				"description": "Reduces Output bits/sec Required to Attack"
+				"description": "Reduce Output BPS Required to Attack by @"
 			},
 			{
 				"name": "Network",
 				"id": 3,
-				"description": "Increase Outbound bits/sec"
+				"description": "Increase Outbound BPS by @"
 			},
 			{
 				"name": "Compression",
 				"id": 4,
-				"description": "Increase Storage Capacity"
+				"description": "Increase Storage Capacity by @"
 			},
 			{
 				"name": "Replication",
 				"id": 5,
-				"description": "Automatically Generates Stored Bits"
+				"description": "Automatically Generates @ Stored Bits per second"
 			},
 		],
 
@@ -228,7 +236,7 @@
 					{
 						"name": "Version Control",
 						"type": 5,
-						"value": 0.006,
+						"value": 0.01,
 						"quantity": 1
 					}
 				]
@@ -280,7 +288,7 @@
 					{
 						"name": "9 9s Availability",
 						"type": 5,
-						"value": 0.01,
+						"value": 0.02,
 						"quantity": 1
 					}
 				]

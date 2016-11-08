@@ -35,10 +35,14 @@ public class BitSpawnManager : MonoBehaviour {
 	void SpawnBits() {
 		timeSinceBitSpawned += Time.deltaTime;
 
-		while(timeSinceBitSpawned >= BaseTimeBetweenBitSpawns) {
+		while(timeSinceBitSpawned >= TimeBetweenBitSpawns()) {
 			bitPools[Random.Range(0, bitPools.Length)].GetInstance();
-			timeSinceBitSpawned -= BaseTimeBetweenBitSpawns;
+			timeSinceBitSpawned -= TimeBetweenBitSpawns();
 		}
+	}
+
+	float TimeBetweenBitSpawns() {
+		return BaseTimeBetweenBitSpawns / GameManager.Instance.UpgradeManager.UpgradeState.InboundBPS;
 	}
 
 	/**
@@ -47,9 +51,6 @@ public class BitSpawnManager : MonoBehaviour {
 	public void OnBitReachedTarget(Bit bit) {
 		bitPools[bit.PoolId].ReturnInstance(bit.gameObject);
 
-		GameManager.Instance.GameState.StoredBits  = Mathf.Min(
-			GameManager.Instance.GameState.StoredBits + 1, 
-			GameManager.Instance.GameState.StorageCapacity
-		);
+		GameManager.Instance.StorageUnitManager.AddBits(1);
 	}
 }

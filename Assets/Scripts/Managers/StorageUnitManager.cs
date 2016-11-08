@@ -5,6 +5,7 @@ public class StorageUnitManager : MonoBehaviour {
 
 	public Transform spawnPosition;
 	public GameObject[] storageUnitPrefabs;
+	public Sprite[] storageUnitIcons;
 
 	private GameObject currentStorageUnitPrefab;
 	private int storageUnitId = -1;
@@ -28,6 +29,25 @@ public class StorageUnitManager : MonoBehaviour {
 
 		this.storageUnitId = storageUnitId;
 		GameManager.Instance.GameState.StorageUnitId = storageUnitId;
+	}
+
+	public Sprite GetStorageUnitIcon(int storageUnitId) {
+		if (storageUnitId >= storageUnitIcons.Length) {
+			return null;
+		}
+
+		return storageUnitIcons[storageUnitId];
+	}
+
+	public void AddBits(int bits) {
+		if (bits == 0) {
+			return;
+		}
+
+		GameManager.Instance.GameState.StoredBits = Mathf.Min(
+			GameManager.Instance.GameState.StoredBits + bits, 
+			GameManager.Instance.GameState.StorageCapacity * GameManager.Instance.UpgradeManager.UpgradeState.StorageCapacity
+		);
 	}
 
 }

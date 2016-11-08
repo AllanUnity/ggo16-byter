@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
@@ -23,7 +24,10 @@ public class SaveManager : MonoBehaviour {
 
 	void SaveGame() {
 		string gameSavePath = Application.persistentDataPath + GameSaveFilename;
-		Debug.Log("Saving the game: " + gameSavePath);
+
+		if (GameManager.Instance.GameState.PurchasedUpgrades == null) {
+			GameManager.Instance.GameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
+		}
 
 		BinaryFormatter bf = new BinaryFormatter();
 		FileStream file = File.Create(gameSavePath);

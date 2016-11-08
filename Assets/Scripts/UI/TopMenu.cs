@@ -32,7 +32,10 @@ public class TopMenu : MonoBehaviour {
 		previousBitCount = GameManager.Instance.GameState.StoredBits;
 		inboundTime += Time.deltaTime;
 		if (inboundTime >= 1.0f) {
-			txtInboundBitsPerSec.text = BitUtil.StringFormat(inboundBits, BitUtil.TextFormat.Short) + "/sec.";
+			// Don't update if we've made a purchase, in which case this will be negative
+			if (inboundBits >= 0) {
+				txtInboundBitsPerSec.text = BitUtil.StringFormat(inboundBits, BitUtil.TextFormat.Short) + "/sec.";
+			}
 
 			inboundTime = 0f;
 			inboundBits = 0f;
