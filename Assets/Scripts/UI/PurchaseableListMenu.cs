@@ -14,8 +14,23 @@ public class PurchaseableListMenu : MonoBehaviour {
 	public GameObject container;
 	public GameObject purchaseableListItemPrefab;
 	public GameObject purchaseableTierHeaderPrefab;
+	public GameObject overallProgressPrefab;
 
+	private Slider overallProgressBar;
+	private Text overallProgressLabel;
 	private PurchaseableListMenuItem[] listElements;
+
+	private int menuId;
+	private PurchaseableListMenuPresenter presenter;
+
+	void Update() {
+		// Note: This must run on the update loop rather than in ReloadUI, because 
+		// the value is constantly changing.
+		if (presenter.ShouldDisplayOverallProgressBar(menuId)) {
+			overallProgressBar.value = presenter.GetOverallProgress(menuId);
+			overallProgressLabel.text = presenter.GetOverallProgressLabel(menuId);
+		}
+	}
 
 	public void ReloadUI() {
 		for (int i = 0; i < listElements.Length; i++) {
@@ -24,6 +39,18 @@ public class PurchaseableListMenu : MonoBehaviour {
 	}
 
 	public void Initialize(int menuId, PurchaseableListMenuPresenter presenter) {
+		this.menuId = menuId;
+		this.presenter = presenter;
+
+		if (presenter.ShouldDisplayOverallProgressBar(menuId)) {
+			GameObject progressBar = (GameObject) Instantiate(overallProgressPrefab, container.transform);
+			progressBar.transform.localScale = Vector3.one;
+
+			overallProgressBar = progressBar.GetComponentInChildren<Slider>();
+			overallProgressBar.interactable = false;
+			overallProgressLabel = progressBar.GetComponentInChildren<Text>();
+		}
+
 		Purchaseable[] purchaseables = presenter.GetPurchaseables(menuId);
 		listElements = new PurchaseableListMenuItem[purchaseables.Length];
 

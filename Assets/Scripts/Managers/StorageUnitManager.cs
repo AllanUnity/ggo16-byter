@@ -7,7 +7,7 @@ public class StorageUnitManager : MonoBehaviour {
 	public GameObject[] storageUnitPrefabs;
 	public Sprite[] storageUnitIcons;
 
-	private GameObject currentStorageUnitPrefab;
+	private GameObject currentStorageUnit;
 	private int storageUnitId = -1;
 
 	public void SetStorageUnit(int storageUnitId) {
@@ -16,16 +16,12 @@ public class StorageUnitManager : MonoBehaviour {
 		}
 
 		GameObject storageUnit = (GameObject) Instantiate(storageUnitPrefabs[storageUnitId]);
-		storageUnit.transform.position = new Vector3(
-			spawnPosition.position.x, 
-			spawnPosition.position.y + (storageUnit.transform.localScale.y / 2),
-			spawnPosition.position.z
-		);
+		storageUnit.transform.position = spawnPosition.position + storageUnit.GetComponent<AnchorPoint>().point;
 
-		if (currentStorageUnitPrefab != null) {
-			Destroy(currentStorageUnitPrefab);
+		if (currentStorageUnit != null) {
+			Destroy(currentStorageUnit);
 		}
-		currentStorageUnitPrefab = storageUnit;
+		currentStorageUnit = storageUnit;
 
 		this.storageUnitId = storageUnitId;
 		GameManager.Instance.GameState.StorageUnitId = storageUnitId;
@@ -39,6 +35,10 @@ public class StorageUnitManager : MonoBehaviour {
 		return storageUnitIcons[storageUnitId];
 	}
 
+	public float GetMaxCapacity() {
+		return GameManager.Instance.GameState.StorageCapacity * GameManager.Instance.UpgradeManager.UpgradeState.StorageCapacity;
+	}
+
 	public void AddBits(int bits) {
 		if (bits == 0) {
 			return;
@@ -46,7 +46,7 @@ public class StorageUnitManager : MonoBehaviour {
 
 		GameManager.Instance.GameState.StoredBits = Mathf.Min(
 			GameManager.Instance.GameState.StoredBits + bits, 
-			GameManager.Instance.GameState.StorageCapacity * GameManager.Instance.UpgradeManager.UpgradeState.StorageCapacity
+			GetMaxCapacity()
 		);
 	}
 

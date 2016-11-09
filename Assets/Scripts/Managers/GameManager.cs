@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
 	public UpgradeManager UpgradeManager { get; set; }
 	public SaveManager SaveManager { get; set; }
 	public MenuManager MenuManager { get; set; }
+	public ColorManager ColorManager { get; set; }
 
 	public GameConfiguration GameConfiguration { get; set; }
 	public GameState GameState { get; set; }
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour {
 		UpgradeManager = GetComponent<UpgradeManager>();
 		SaveManager = GetComponent<SaveManager>();
 		MenuManager = GetComponent<MenuManager>();
+		ColorManager = GetComponent<ColorManager>();
 
 		// Initialize the game.
 		LoadConfiguration();

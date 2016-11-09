@@ -74,7 +74,7 @@ public class StorageUnit : Purchaseable {
 	}
 
 	public string GetDescription() {
-		return "Storage Capacity: " + BitUtil.StringFormat(Capacity, BitUtil.TextFormat.Long, true);
+		return "Storage Capacity: " + BitUtil.StringFormat(Capacity, BitUtil.TextFormat.Short, true);
 	}
 
 	public float GetCost() {

@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
+
+	private static float HighlightMenuButtonAtPercentage = .9f;
 
 	private const int DeviceMenuId = 1;
 	private const int StorageUnitMenuId = 2;
@@ -11,6 +14,8 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 	public PurchaseableListMenu deviceList;
 	public PurchaseableListMenu storageUnitList;
 	public PurchaseableListMenu upgradeList;
+
+	public Image imgStorageUnitsBtnBackground;
 
 	private GameObject[] menus;
 
@@ -36,6 +41,14 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 		deviceList.Initialize(DeviceMenuId, this);
 		storageUnitList.Initialize(StorageUnitMenuId, this);
 		upgradeList.Initialize(UpgradeMenuId, this);
+	}
+
+	void Update() {
+		if (GetOverallProgress(StorageUnitMenuId) >= HighlightMenuButtonAtPercentage) {
+			imgStorageUnitsBtnBackground.color = GameManager.Instance.ColorManager.purpleColor;
+		} else {
+			imgStorageUnitsBtnBackground.color = GameManager.Instance.ColorManager.whiteColor;
+		}
 	}
 		
 	public void DisplayDeviceList() {
@@ -139,6 +152,26 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 
 	public bool HasTiers(int menuId) {
 		return menuId == UpgradeMenuId;
+	}
+
+	public bool ShouldDisplayOverallProgressBar(int menuId) {
+		return menuId == StorageUnitMenuId;
+	}
+
+	public float GetOverallProgress(int menuId) {
+		if (menuId != StorageUnitMenuId) {
+			return 0f;
+		}
+
+		return GameManager.Instance.GameState.StoredBits / GameManager.Instance.StorageUnitManager.GetMaxCapacity();
+	}
+
+	public string GetOverallProgressLabel(int menuId) {
+		if (menuId != StorageUnitMenuId) {
+			return "";
+		}
+
+		return BitUtil.StringFormat(GameManager.Instance.StorageUnitManager.GetMaxCapacity(), BitUtil.TextFormat.Short, false, false);
 	}
 
 	public bool ShouldDisplayProgressBar(int menuId) {

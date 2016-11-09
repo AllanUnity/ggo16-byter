@@ -12,8 +12,10 @@ public class GameState {
 	public int DeviceId { get; set; }
 	public int StorageUnitId { get; set; }
 
-	public int NextTargetId { get; set; } // The lowest, unhacked target. Starts at zero for the first target.
+	public int NextTargetId { get; set; } // The lowest unhacked target. Starts at zero for the first target.
 
+	// TODO: It would be nice to have this be a map, but System.Serializable doesn't support Dictionary types.
+	// Instead, have to use a list of custom (serializable) objects instead.
 	public List<PurchasedUpgrade> PurchasedUpgrades { get; set; }
 
 	//--- Transient ---//
@@ -37,6 +39,19 @@ public class GameState {
 				StorageUnit s = GameManager.Instance.GameConfiguration.StorageUnits[i];
 				if (s.Id == StorageUnitId) {
 					return s;
+				}
+			}
+
+			return null;
+		}
+	}
+
+	public Target NextTarget {
+		get {
+			for (int i = 0; i < GameManager.Instance.GameConfiguration.Targets.Length; i++) {
+				Target t = GameManager.Instance.GameConfiguration.Targets[i];
+				if (t.Id == NextTargetId) {
+					return t;
 				}
 			}
 
