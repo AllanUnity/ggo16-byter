@@ -3,31 +3,41 @@ using System.Collections;
 
 public class DeviceManager : MonoBehaviour {
 
-	public Transform spawnPosition;
-	public GameObject[] devicePrefabs;
+	private static float TimeToChangeDisplayColor = 1f;
+
+	public GameObject[] devices;
 	public Sprite[] deviceIcons;
 
-	private GameObject currentDeviceModel;
-	private int deviceId = -1;
+	public Material deviceDisplayMaterial;
+	public Color deviceDisplayColor;
+	public Color deviceDisplayColorOff = Color.black;
+
+	private bool isDeviceDisplayOn;
+	private float timeSinceOnChanged;
+	private Color displayColorAtStateChange;
+
+	void Awake() {
+		SetDisplayOn(false);
+	}
+
+	void Update() {
+		timeSinceOnChanged += Time.deltaTime;
+
+		Color color;
+		if (isDeviceDisplayOn) {
+			color = Color.Lerp(displayColorAtStateChange, deviceDisplayColor, timeSinceOnChanged / TimeToChangeDisplayColor);
+		} else {
+			color = Color.Lerp(displayColorAtStateChange, deviceDisplayColorOff, timeSinceOnChanged / TimeToChangeDisplayColor);
+		}
+
+		deviceDisplayMaterial.color = color;
+	}
 
 	public void SetDevice(int deviceId) {
-		if (this.deviceId == deviceId) {
-			return;
+		for (int i = 0; i < devices.Length; i++) {
+			devices[i].SetActive(i <= deviceId);
 		}
-
-		GameObject device = (GameObject) Instantiate(devicePrefabs[deviceId]);
-		device.transform.position = new Vector3(
-			spawnPosition.position.x, 
-			spawnPosition.position.y + (device.transform.localScale.y / 2),
-			spawnPosition.position.z
-		);
-
-		if (currentDeviceModel != null) {
-			Destroy(currentDeviceModel);
-		}
-		currentDeviceModel = device;
-
-		this.deviceId = deviceId;
+			
 		GameManager.Instance.GameState.DeviceId = deviceId;
 	}
 
@@ -37,5 +47,11 @@ public class DeviceManager : MonoBehaviour {
 		}
 
 		return deviceIcons[deviceId];
+	}
+
+	public void SetDisplayOn(bool isOn) {
+		isDeviceDisplayOn = isOn;
+		timeSinceOnChanged = 0f;
+		displayColorAtStateChange = deviceDisplayMaterial.color;
 	}
 }

@@ -16,6 +16,8 @@ public class CircuitNode : MonoBehaviour {
 
 	private float timeSinceBitAbove = OnStateDuration;
 
+	private bool isOn;
+
 	void Start() {
 		meshRenderer = GetComponent<MeshRenderer>();
 		onLight = GetComponent<Light>();
@@ -46,5 +48,11 @@ public class CircuitNode : MonoBehaviour {
 		} else {
 			onLight.intensity = Mathf.Max(OffStateLightIntensity, onLight.intensity - LightIntensityChangePerTick);
 		}
+
+		this.isOn = on;
+	}
+
+	public bool IsOn() {
+		return isOn;
 	}
 }

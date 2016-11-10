@@ -16,7 +16,7 @@ public class UpgradeManager : MonoBehaviour {
 	private Dictionary<int, Upgrade> upgradeCache;
 	private float timeToGenerate;
 
-	void Start() {
+	void Awake() {
 		upgradeCache = new Dictionary<int, Upgrade>();
 		timeToGenerate = TimeBetweenBitGeneration;
 
@@ -29,12 +29,14 @@ public class UpgradeManager : MonoBehaviour {
 		if (timeToGenerate <= 0f) {
 			timeToGenerate = TimeBetweenBitGeneration;
 
+			float generatedBitCount = upgradeState.GeneratedBPS * GameManager.Instance.GameState.StoredBits * GameManager.Instance.CircuitManager.GetLitNodeCount();
+
 			#if UNITY_EDITOR
-			Debug.Log("Generating: " + (upgradeState.GeneratedBPS * GameManager.Instance.GameState.StoredBits));
+			Debug.Log("Generating: " + generatedBitCount);
 			#endif
 
 			GameManager.Instance.StorageUnitManager.AddBits(
-				Mathf.RoundToInt(upgradeState.GeneratedBPS * GameManager.Instance.GameState.StoredBits)
+				Mathf.RoundToInt(generatedBitCount)
 			);
 		}
 	}
@@ -43,7 +45,12 @@ public class UpgradeManager : MonoBehaviour {
 		for (int i = 0; i < GameManager.Instance.GameConfiguration.UpgradeTypes.Length; i++) {
 			UpgradeType upgradeType = GameManager.Instance.GameConfiguration.UpgradeTypes[i];
 			if (upgradeType.Id == type) {
-				return upgradeType.Description.Replace("@", (value * 100).ToString("0.0") + "%");
+				string valueString = (value * 100).ToString("0.00"); 
+				if (valueString.EndsWith("0")) {
+					valueString = valueString.Substring(0, valueString.Length - 1);
+				}
+
+				return upgradeType.Description.Replace("@", valueString + "%");
 			}
 		}
 
@@ -125,7 +132,7 @@ public class UpgradeManager : MonoBehaviour {
 				upgradeState.InboundBPS += value;
 				break;
 			case UpgradeType.Botnet:
-				upgradeState.OutboundBPSForAttack += value;
+				upgradeState.OutboundBPSForAttack -= value;
 				break;
 			case UpgradeType.Network:
 				upgradeState.OutboundBPS += value;

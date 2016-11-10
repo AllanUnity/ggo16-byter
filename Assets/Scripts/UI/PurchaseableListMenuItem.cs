@@ -48,7 +48,8 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 		txtCost.text = BitUtil.StringFormat(purchaseable.GetCost(), BitUtil.TextFormat.Short, true, true);
 		imgIcon.sprite = purchaseable.GetIcon();
 
-		switch(presenter.GetPurchaseState(menuId, purchaseable)) {
+		PurchaseableListMenu.PurchaseState purchaseState = presenter.GetPurchaseState(menuId, purchaseable);
+		switch(purchaseState) {
 		case PurchaseableListMenu.PurchaseState.Purchased:
 			imgBackground.color = purchasedBackgroundColor;
 

@@ -10,7 +10,9 @@ public class Target {
 
 			targets[i] = new Target(
 				i,
-				json["name"].Value
+				json["name"].Value,
+				json["cost"].AsFloat,
+				json["bps-required"].AsFloat
 			);
 		}
 
@@ -31,9 +33,25 @@ public class Target {
 		}
 	}
 
-	public Target(int id, string name) {
+	private float cost;
+	public float Cost {
+		get {
+			return cost;
+		}
+	}
+
+	private float requiredBps;
+	public float RequiredBps {
+		get {
+			return requiredBps;
+		}
+	}
+
+	public Target(int id, string name, float cost, float requiredBps) {
 		this.id = id;
 		this.name = name;
+		this.cost = cost;
+		this.requiredBps = requiredBps;
 	}
 }
 

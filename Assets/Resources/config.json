@@ -1,22 +1,44 @@
 {
 	"targets": [
 		{
-			"name": "Old Laptop"
+			"name": "Old Laptop",
+			"cost": 150000,
+			"bps-required": 5100
 		},
 		{
-			"name": "Friend's Cell Phone"
+			"name": "Friend's Cell Phone",
+			"cost": 187000000,
+			"bps-required": 105100
 		},
 		{
-			"name": "Company Intranet"
+			"name": "Company Intranet",
+			"cost": 586000000000,
+			"bps-required": 875105100
 		},
 		{
-			"name": "Mayor's Office"
+			"name": "Mayor's Office",
+			"cost": 632000000000000,
+			"bps-required": 963875105100
 		},
 		{
-			"name": "Social Network"
+			"name": "Social Network",
+			"cost": 986000000000000000,
+			"bps-required": 1210963875105100
 		},
 		{
-			"name": "Federal Government"
+			"name": "Federal Government",
+			"cost": 5200000000000000000000,
+			"bps-required": 98611210963875105100
+		},
+		{
+			"name": "Planetary Defenses",
+			"cost": 8575200000000000000000000,
+			"bps-required": 32098611210963875105100
+		},
+		{
+			"name": "Galactic Fleet",
+			"cost": 35278575200000000000000000000,
+			"bps-required": 652330298611210963875105100
 		}
 	],
 
@@ -28,81 +50,81 @@
 		},
 		{
 			"name": "Smart Phone",
-			"out-bps": 500,
-			"cost": 4060
+			"out-bps": 5000,
+			"cost": 40060
 		},
 		{
 			"name": "Tablet",
-			"out-bps": 1200,
-			"cost": 12000
+			"out-bps": 1200000,
+			"cost": 1200000
 		},
 		{
 			"name": "Laptop",
-			"out-bps": 40000,
-			"cost": 230000
+			"out-bps": 400000000,
+			"cost": 230000000
 		},
 		{
 			"name": "Desktop",
-			"out-bps": 150000,
-			"cost": 2467980
+			"out-bps": 150000000000,
+			"cost": 246798000000
 		},
 		{
 			"name": "Server",
-			"out-bps": 8000000,
-			"cost": 900000000
+			"out-bps": 800000000000000,
+			"cost": 900000000000000
 		},
 		{
 			"name": "Server Farm",
-			"out-bps": 650000000,
-			"cost": 978000000000
+			"out-bps": 6500000000000000000,
+			"cost": 978000000000000000
 		},
 		{
 			"name": "The Cloud",
-			"out-bps": 18400000000,
-			"cost": 7654500000000000
+			"out-bps": 1840000000000000000000,
+			"cost": 76545000000000000000000
 		}
 	],
 
 	"storage": [
 		{
 			"name": "Floppy Drive",
-			"capacity": 8000,
+			"capacity": 80000,
 			"cost": 0
 		},
 		{
 			"name": "CD",
-			"capacity": 20000,
-			"cost": 7500
+			"capacity": 200000000,
+			"cost": 750000
 		},
 		{
 			"name": "USB Drive",
-			"capacity": 1060000,
-			"cost": 22000
+			"capacity": 1060000000000,
+			"cost": 22000000
 		},
 		{
 			"name": "Hard Drive",
-			"capacity": 800000000,
-			"cost": 1420000
+			"capacity": 800000000000000000,
+			"cost": 14200000000
 		},
 		{
 			"name": "FTP Server",
-			"capacity": 120000000000,
-			"cost": 1000000000
+			"capacity": 120000000000000000000000,
+			"cost": 100000000000000
 		},
 		{
 			"name": "Storage SaaS",
-			"capacity": 480000000000000,
-			"cost": 320000000000
+			"capacity": 480000000000000000000000000,
+			"cost": 320000000000000000
 		},
 		{
 			"name": "Data Warehouse",
-			"capacity": 1600000000000000,
-			"cost": 980000000000000
+			"capacity": 1600000000000000000000000000000,
+			"cost": 98000000000000000000000
 		},
 		{
 			"name": "The Cloud",
 			"capacity": 0,
-			"cost": 41600000000000000
+			"cost": 41600000000000000000000000
 		}
 	],
 
@@ -111,7 +133,7 @@
 			{
 				"name": "Automation",
 				"id": 1,
-				"description": "+@ Inbound BPS while holding button"
+				"description": "Create Bits +@ Faster While Holding Button"
 			},
 			{
 				"name": "Botnet",
@@ -131,7 +153,7 @@
 			{
 				"name": "Replication",
 				"id": 5,
-				"description": "Generate @ of Stored Bits per second"
+				"description": "Generate @ of Stored Bits Per Lit Node Each Second"
 			},
 		],
 
@@ -166,7 +188,7 @@
 					{
 						"name": "Paper Copies",
 						"type": 5,
-						"value": 0.001,
+						"value": 0.0001,
 						"quantity": 20
 					}
 				]
@@ -201,7 +223,7 @@
 					{
 						"name": "Tape Backup",
 						"type": 5,
-						"value": 0.002,
+						"value": 0.0002,
 						"quantity": 10
 					}
 				]
@@ -236,7 +258,7 @@
 					{
 						"name": "Version Control",
 						"type": 5,
-						"value": 0.01,
+						"value": 0.001,
 						"quantity": 1
 					}
 				]
@@ -258,14 +280,20 @@
 					},
 					{
 						"name": "4G",
-						"type": 4,
+						"type": 3,
 						"value": 0.04,
 						"quantity": 10
 					},
 					{
+						"name": "Machine Learning",
+						"type": 4,
+						"value": 0.12,
+						"quantity": 20
+					},
+					{
 						"name": "Cloud Backup",
 						"type": 5,
-						"value": 0.004,
+						"value": 0.0004,
 						"quantity": 10
 					}
 				]
@@ -280,17 +308,31 @@
 						"quantity": 5
 					},
 					{
-						"name": "Machine Learning",
-						"type": 4,
-						"value": 0.12,
-						"quantity": 20
-					},
-					{
 						"name": "9 9s Availability",
 						"type": 5,
-						"value": 0.02,
+						"value": 0.002,
 						"quantity": 1
 					}
+				]
+			},
+			{
+				"name": "Tier 6",
+				"upgrades": [
+				]
+			},
+			{
+				"name": "Tier 7",
+				"upgrades": [
+				]
+			},
+			{
+				"name": "Tier 8",
+				"upgrades": [
+				]
+			},
+			{
+				"name": "Tier 9",
+				"upgrades": [
 				]
 			}
 		]

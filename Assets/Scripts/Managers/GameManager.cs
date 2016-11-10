@@ -10,9 +10,11 @@ public class GameManager : MonoBehaviour {
 	public StorageUnitManager StorageUnitManager { get; set; }
 	public DeviceManager DeviceManager { get; set; }
 	public UpgradeManager UpgradeManager { get; set; }
+	public TargetManager TargetManager { get; set; }
 	public SaveManager SaveManager { get; set; }
 	public MenuManager MenuManager { get; set; }
 	public ColorManager ColorManager { get; set; }
+	public CircuitManager CircuitManager { get; set; }
 
 	public GameConfiguration GameConfiguration { get; set; }
 	public GameState GameState { get; set; }
@@ -30,9 +32,11 @@ public class GameManager : MonoBehaviour {
 		StorageUnitManager = GetComponent<StorageUnitManager>();
 		DeviceManager = GetComponent<DeviceManager>();
 		UpgradeManager = GetComponent<UpgradeManager>();
+		TargetManager = GetComponent<TargetManager>();
 		SaveManager = GetComponent<SaveManager>();
 		MenuManager = GetComponent<MenuManager>();
 		ColorManager = GetComponent<ColorManager>();
+		CircuitManager = GetComponent<CircuitManager>();
 
 		// Initialize the game.
 		LoadConfiguration();
@@ -46,11 +50,11 @@ public class GameManager : MonoBehaviour {
 
 	void LoadGameState() {
 		GameState = SaveManager.LoadGame();
+		if (GameState.PurchasedUpgrades == null) {
+			GameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
+		}
+
 		StorageUnitManager.SetStorageUnit(GameState.StorageUnitId);
 		DeviceManager.SetDevice(GameState.DeviceId);
-
-		if (GameManager.Instance.GameState.PurchasedUpgrades == null) {
-			GameManager.Instance.GameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
-		}
 	}
 }

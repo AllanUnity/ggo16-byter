@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 	public PurchaseableListMenu deviceList;
 	public PurchaseableListMenu storageUnitList;
 	public PurchaseableListMenu upgradeList;
+	public TargetListMenu targetList;
 
 	public Image imgStorageUnitsBtnBackground;
 
@@ -25,13 +26,13 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 			return hasOpenMenu;
 		}
 	}
-
-	// Use this for initialization
-	void Start () {
+		
+	void Awake() {
 		menus = new GameObject[]{
 			deviceList.gameObject,
 			storageUnitList.gameObject,
 			upgradeList.gameObject,
+			targetList.gameObject
 		};
 
 		// Hide any open menus left by the editor
@@ -53,14 +54,21 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 		
 	public void DisplayDeviceList() {
 		SetVisibleMenu(deviceList.gameObject);
+		deviceList.ReloadUI();
 	}
 
 	public void DisplayStorageUnitList() {
 		SetVisibleMenu(storageUnitList.gameObject);
+		storageUnitList.ReloadUI();
 	}
 
 	public void DisplayUpgradeList() {
 		SetVisibleMenu(upgradeList.gameObject);
+		upgradeList.ReloadUI();
+	}
+
+	public void DisplayTargetList() {
+		SetVisibleMenu(targetList.gameObject);
 	}
 
 	public void CloseCurrentMenu() {
@@ -123,8 +131,7 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 			} else if (GetPurchasedCount(menuId, purchaseable) < purchaseable.GetQuantity()) {
 				return PurchaseableListMenu.PurchaseState.CanPurchase;
 			}
-
-			return PurchaseableListMenu.PurchaseState.CannotPurchase;
+			break;
 		}
 
 		return PurchaseableListMenu.PurchaseState.CannotPurchase;

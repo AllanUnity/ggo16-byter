@@ -3,8 +3,8 @@
 public class UpgradeState {
 
 	public float InboundBPS { get; set; } 
-	public float OutboundBPSForAttack { get; set; } // TODO [target.outboundBPSRequired / UpgradeState.OutboundBPSForAttack]
-	public float OutboundBPS { get; set; } // TODO [outboundBPS * UpgradeState.OutboundBPS]
+	public float OutboundBPSForAttack { get; set; } 
+	public float OutboundBPS { get; set; } 
 	public float StorageCapacity { get; set; }
 	public float GeneratedBPS { get; set; }
 
