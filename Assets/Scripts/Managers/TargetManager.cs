@@ -8,7 +8,7 @@ public class TargetManager : MonoBehaviour {
 	}
 
 	public bool HasRequiredOutboundBps(Target target) {
-		return RequiredOutboundBps(target) <= GameManager.Instance.GameState.Device.OutBps * GameManager.Instance.UpgradeManager.UpgradeState.OutboundBPS;
+		return RequiredOutboundBps(target) <= GameManager.Instance.DeviceManager.OutboundBps();
 	}
 
 	public bool HasRequiredBits(Target target) {

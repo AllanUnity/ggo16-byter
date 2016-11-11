@@ -36,7 +36,7 @@
 			"bps-required": 32098611210963875105100
 		},
 		{
-			"name": "Galactic Fleet",
+			"name": "Galactic Empire",
 			"cost": 35278575200000000000000000000,
 			"bps-required": 652330298611210963875105100
 		}
@@ -88,7 +88,7 @@
 	"storage": [
 		{
 			"name": "Floppy Drive",
-			"capacity": 80000,
+			"capacity": 4000000,
 			"cost": 0
 		},
 		{
@@ -112,12 +112,12 @@
 			"cost": 100000000000000
 		},
 		{
-			"name": "Storage SaaS",
+			"name": "Data Warehouse",
 			"capacity": 480000000000000000000000000,
 			"cost": 320000000000000000
 		},
 		{
-			"name": "Data Warehouse",
+			"name": "Storage SaaS",
 			"capacity": 1600000000000000000000000000000,
 			"cost": 98000000000000000000000
 		},
@@ -133,7 +133,7 @@
 			{
 				"name": "Automation",
 				"id": 1,
-				"description": "Create Bits +@ Faster While Holding Button"
+				"description": "Generate @ of Stored Bits Per Lit Node Each Second"
 			},
 			{
 				"name": "Botnet",
@@ -153,25 +153,25 @@
 			{
 				"name": "Replication",
 				"id": 5,
-				"description": "Generate @ of Stored Bits Per Lit Node Each Second"
+				"description": "Create Bits +@ Faster While Holding Button"
 			},
+			{
+				"name": "Computation",
+				"id": 6,
+				"description": "+@ Bit Value"
+			}
 		],
 
 		"tiers": [
 			{
 				"name": "Tier 1",
+				"base-price": 1,
 				"upgrades": [
 					{
 						"name": "Programmable Keyboard",
 						"type": 1,
-						"value": 0.01,
+						"value": 0.0001,
 						"quantity": 10
-					},
-					{
-						"name": "Workplace Botnet",
-						"type": 2,
-						"value": 0.05,
-						"quantity": 1
 					},
 					{
 						"name": "Dial-Up",
@@ -188,24 +188,25 @@
 					{
 						"name": "Paper Copies",
 						"type": 5,
-						"value": 0.0001,
+						"value": 0.01,
 						"quantity": 20
 					}
 				]
 			},
 			{
 				"name": "Tier 2",
+				"base-price": 4,
 				"upgrades": [
 					{
 						"name": "Scripting",
 						"type": 1,
-						"value": 0.02,
-						"quantity": 5
+						"value": 0.0002,
+						"quantity": 10
 					},
 					{
-						"name": "City Botnet",
+						"name": "Workplace Botnet",
 						"type": 2,
-						"value": 0.10,
+						"value": 0.05,
 						"quantity": 1
 					},
 					{
@@ -215,32 +216,27 @@
 						"quantity": 20
 					},
 					{
-						"name": "Lossless Compression",
-						"type": 4,
-						"value": 0.06,
-						"quantity": 2
-					},
-					{
 						"name": "Tape Backup",
 						"type": 5,
-						"value": 0.0002,
-						"quantity": 10
+						"value": 0.02,
+						"quantity": 15
 					}
 				]
 			},
 			{
 				"name": "Tier 3",
+				"base-price": 8,
 				"upgrades": [
 					{
 						"name": "Code Monkeys",
 						"type": 1,
-						"value": 0.05,
+						"value": 0.0005,
 						"quantity": 20
 					},
 					{
-						"name": "Regional Botnet",
+						"name": "City Botnet",
 						"type": 2,
-						"value": 0.15,
+						"value": 0.10,
 						"quantity": 1
 					},
 					{
@@ -250,32 +246,27 @@
 						"quantity": 15
 					},
 					{
-						"name": "ZIP",
+						"name": "Lossless Compression",
 						"type": 4,
-						"value": 0.09,
+						"value": 0.06,
 						"quantity": 2
-					},
-					{
-						"name": "Version Control",
-						"type": 5,
-						"value": 0.001,
-						"quantity": 1
 					}
 				]
 			},
 			{
 				"name": "Tier 4",
+				"base-price": 12,
 				"upgrades": [
 					{
 						"name": "Open Source Projects",
 						"type": 1,
 						"value": 0.10,
-						"quantity": 10
+						"quantity": 1
 					},
 					{
-						"name": "Global Botnet",
+						"name": "Regional Botnet",
 						"type": 2,
-						"value": 0.20,
+						"value": 0.15,
 						"quantity": 1
 					},
 					{
@@ -285,22 +276,23 @@
 						"quantity": 10
 					},
 					{
-						"name": "Machine Learning",
-						"type": 4,
-						"value": 0.12,
-						"quantity": 20
-					},
-					{
-						"name": "Cloud Backup",
+						"name": "Version Control",
 						"type": 5,
-						"value": 0.0004,
-						"quantity": 10
+						"value": 0.1,
+						"quantity": 3
 					}
 				]
 			},
 			{
 				"name": "Tier 5",
+				"base-price": 14,
 				"upgrades": [
+					{
+						"name": "Global Botnet",
+						"type": 2,
+						"value": 0.10,
+						"quantity": 5
+					},
 					{
 						"name": "Hardline",
 						"type": 3,
@@ -308,31 +300,138 @@
 						"quantity": 5
 					},
 					{
-						"name": "9 9s Availability",
-						"type": 5,
-						"value": 0.002,
+						"name": "Binary Operations",
+						"type": 6,
+						"value": 2,
 						"quantity": 1
+					},
+					{
+						"name": "Cloud Backup",
+						"type": 5,
+						"value": 0.04,
+						"quantity": 10
 					}
 				]
 			},
 			{
 				"name": "Tier 6",
+				"base-price": 18,
 				"upgrades": [
+					{
+						"name": "Cron Jobs",
+						"type": 1,
+						"value": 0.001,
+						"quantity": 40
+					},
+					{
+						"name": "Cable",
+						"type": 3,
+						"value": 0.01,
+						"quantity": 50
+					},
+					{
+						"name": "ZIP",
+						"type": 4,
+						"value": 0.09,
+						"quantity": 30
+					},
+					{
+						"name": "Master/Slave",
+						"type": 5,
+						"value": 0.2,
+						"quantity": 1
+					}
 				]
 			},
 			{
 				"name": "Tier 7",
+				"base-price": 22,
 				"upgrades": [
+					{
+						"name": "Zombie Army Botnet",
+						"type": 2,
+						"value": 0.05,
+						"quantity": 35
+					},
+					{
+						"name": "Fiber",
+						"type": 3,
+						"value": 0.1,
+						"quantity": 15
+					},
+					{
+						"name": "Machine Learning",
+						"type": 4,
+						"value": 0.12,
+						"quantity": 50
+					},
+					{
+						"name": "Quantum Computing",
+						"type": 6,
+						"value": 4,
+						"quantity": 1
+					}
 				]
 			},
 			{
 				"name": "Tier 8",
+				"base-price": 26,
 				"upgrades": [
+					{	
+						"name": "Alien Robotics",
+						"type": 1,
+						"value": 0.002,
+						"quantity": 10
+					},
+					{	
+						"name": "Galactic Botnet",
+						"type": 2,
+						"value": 0.03,
+						"quantity": 50
+					},
+					{
+						"name": "H.9000",
+						"type": 4,
+						"value": 0.01,
+						"quantity": 20
+					},
+					{
+						"name": "Cloning",
+						"type": 5,
+						"value": 0.005,
+						"quantity": 20
+					}
 				]
 			},
 			{
 				"name": "Tier 9",
+				"base-price": 30,
 				"upgrades": [
+					
+					{
+						"name": "Teleportation",
+						"type": 3,
+						"value": 0.05,
+						"quantity": 30
+					},	
+					{
+						"name": "Black Hole Compression",
+						"type": 4,
+						"value": 0.02,
+						"quantity": 50
+					},
+					{
+						"name": "Parallel Dimensions",
+						"type": 5,
+						"value": 0.01,
+						"quantity": 50
+					},
+					{
+						"name": "Octum Computing",
+						"type": 6,
+						"value": 8,
+						"quantity": 1
+					}
 				]
 			}
 		]

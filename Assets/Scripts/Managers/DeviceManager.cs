@@ -54,4 +54,8 @@ public class DeviceManager : MonoBehaviour {
 		timeSinceOnChanged = 0f;
 		displayColorAtStateChange = deviceDisplayMaterial.color;
 	}
+
+	public float OutboundBps() {
+		return GameManager.Instance.GameState.Device.OutBps * GameManager.Instance.UpgradeManager.UpgradeState.OutboundBPS;
+	}
 }

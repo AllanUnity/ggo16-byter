@@ -23,7 +23,7 @@ public class BitUtil {
 		Megabyte,
 		Gigabyte,
 		Terabyte,
-		Petabytes,
+		Petabyte,
 		Exabyte,
 		Zettabyte,
 		Yottabyte,
@@ -59,7 +59,7 @@ public class BitUtil {
 			valueString = valueAsRep.ToString("0.000");
 		}
 
-		if (trim) {
+		if (trim && rep != Representation.Bit) {
 			while(valueString.EndsWith("0")) {
 				valueString = valueString.Remove(valueString.Length - 1);
 			}
@@ -84,7 +84,7 @@ public class BitUtil {
 		} else if (bits >= ExabyteRaw) {
 			return Representation.Exabyte;
 		} else if (bits >= PetabyteRaw) {
-			return Representation.Petabytes;
+			return Representation.Petabyte;
 		} else if (bits >= TerabyteRaw) {
 			return Representation.Terabyte;
 		} else if (bits >= GigabyteRaw) {
@@ -114,7 +114,7 @@ public class BitUtil {
 			return bits / GigabyteRaw;
 		case Representation.Terabyte:
 			return bits / TerabyteRaw;
-		case Representation.Petabytes:
+		case Representation.Petabyte:
 			return bits / PetabyteRaw;
 		case Representation.Exabyte:
 			return bits / ExabyteRaw;
@@ -146,7 +146,7 @@ public class BitUtil {
 			return "gB";
 		case Representation.Terabyte:
 			return "tB";
-		case Representation.Petabytes:
+		case Representation.Petabyte:
 			return "pB";
 		case Representation.Exabyte:
 			return "eB";

@@ -87,9 +87,12 @@ public class Upgrade : Purchaseable {
 	}
 
 	public float GetCost() {
+		UpgradeTier tier = GameManager.Instance.UpgradeManager.UpgradeTierFromId(tierId);
 		int purchasedCount = GameManager.Instance.UpgradeManager.PurchasedCount(id);
 
-		return ((tierId + 1) * (purchasedCount + 1) / ((float) quantity + 1 - purchasedCount)) * ((tierId+1) * 1000);
+		return Mathf.Pow(10, tier.BasePrice) 
+			* (((float) purchasedCount / quantity) + 1) // Increase price after each unit purchased
+			* (100 / quantity); // Increase price for lower quantity upgrades
 	}
 
 	public int GetQuantity() {

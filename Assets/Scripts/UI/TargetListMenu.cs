@@ -37,18 +37,8 @@ public class TargetListMenu : MonoBehaviour {
 
 		SetSelectedTarget(GameManager.Instance.GameState.NextTargetId);
 	}
-	
-	void SetSelectedTarget(int selectedTarget) {
-		int numTargets = GameManager.Instance.GameConfiguration.Targets.Length;
 
-		// Sanitize
-		if (selectedTarget >= numTargets) {
-			selectedTarget = 0;
-		} else if (selectedTarget < 0) {
-			selectedTarget = numTargets - 1;
-		}
-		this.selectedTarget = selectedTarget;
-
+	public void ReloadUI() {
 		// Update indicators
 		for (int i = 0; i < navigationIndicators.Length; i++) {
 			if (i == selectedTarget) {
@@ -63,7 +53,7 @@ public class TargetListMenu : MonoBehaviour {
 		txtTargetName.text = target.Name;
 		txtUnlockTier.text = "Unlocks Tier " + (selectedTarget + 2) + " Upgrades";
 		txtCost.text = BitUtil.StringFormat(target.Cost, BitUtil.TextFormat.Long, true);
-		txtOutboundBps.text = "Required Outbound BPS: " 
+		txtOutboundBps.text = "Outbound BPS Required: " 
 			+ BitUtil.StringFormat(GameManager.Instance.TargetManager.RequiredOutboundBps(target), BitUtil.TextFormat.Short, true);
 
 
@@ -94,6 +84,20 @@ public class TargetListMenu : MonoBehaviour {
 			txtCost.gameObject.SetActive(true);
 			txtAlreadyHacked.gameObject.SetActive(false);
 		}
+	}
+	
+	void SetSelectedTarget(int selectedTarget) {
+		int numTargets = GameManager.Instance.GameConfiguration.Targets.Length;
+
+		// Sanitize
+		if (selectedTarget >= numTargets) {
+			selectedTarget = 0;
+		} else if (selectedTarget < 0) {
+			selectedTarget = numTargets - 1;
+		}
+		this.selectedTarget = selectedTarget;
+
+		ReloadUI();
 	}
 
 	public void GoToNextTarget() {

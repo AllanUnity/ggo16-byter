@@ -13,6 +13,10 @@ public class CircuitManager : MonoBehaviour {
 			nodes[i] = nodeObjects[i].GetComponent<CircuitNode>();
 		}
 	}
+
+	public int GetNodeCount() {
+		return nodes.Length;
+	}
 	
 	public int GetLitNodeCount() {
 		int count = 0;

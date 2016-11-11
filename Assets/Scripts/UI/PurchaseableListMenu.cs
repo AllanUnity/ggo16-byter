@@ -30,6 +30,7 @@ public class PurchaseableListMenu : MonoBehaviour {
 			overallProgressBar.value = presenter.GetOverallProgress(menuId);
 			overallProgressLabel.text = presenter.GetOverallProgressLabel(menuId);
 		}
+
 	}
 
 	public void ReloadUI() {

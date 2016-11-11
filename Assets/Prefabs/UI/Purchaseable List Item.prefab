@@ -221,10 +221,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 83ce7dc25b94f4062a1fbc76bed5a443, type: 3}
-    m_FontSize: 18
+    m_FontSize: 22
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 18
+    m_BestFit: 0
+    m_MinSize: 2
     m_MaxSize: 26
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -281,14 +281,14 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 0dda2336e2d394e9bbd411bba046c8b0, type: 3}
-    m_FontSize: 18
+    m_FontSize: 28
     m_FontStyle: 1
-    m_BestFit: 1
-    m_MinSize: 18
+    m_BestFit: 0
+    m_MinSize: 2
     m_MaxSize: 32
     m_Alignment: 3
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1

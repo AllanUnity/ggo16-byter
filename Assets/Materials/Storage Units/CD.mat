@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: CD
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _EMISSION _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -96,16 +96,16 @@ Material:
       second: 0
     - first:
         name: _GlossMapScale
-      second: 0.69
+      second: 0.656
     - first:
         name: _Glossiness
-      second: 0.33
+      second: 0.65
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _Metallic
-      second: 0.22
+      second: 1
     - first:
         name: _Mode
       second: 0
@@ -120,7 +120,7 @@ Material:
       second: 1
     - first:
         name: _SmoothnessTextureChannel
-      second: 1
+      second: 0
     - first:
         name: _SpecularHighlights
       second: 1
@@ -136,10 +136,10 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.41681784, g: 0.39851862, b: 0.46323532, a: 1}
+      second: {r: 0.9632353, g: 0.9632353, b: 0.9632353, a: 1}
     - first:
         name: _EmissionColor
-      second: {r: 0.11913704, g: 0.0522275, b: 0.16911763, a: 1}
+      second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _ReflectColor
       second: {r: 1, g: 1, b: 1, a: 0.5}

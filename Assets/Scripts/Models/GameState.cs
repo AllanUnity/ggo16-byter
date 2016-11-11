@@ -7,6 +7,7 @@ public class GameState {
 
 	//--- Serialized ---//
 
+	public float LifetimeBits { get; set; }
 	public float StoredBits { get; set; }
 
 	public int DeviceId { get; set; }

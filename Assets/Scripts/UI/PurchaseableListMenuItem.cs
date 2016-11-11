@@ -51,6 +51,7 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 		PurchaseableListMenu.PurchaseState purchaseState = presenter.GetPurchaseState(menuId, purchaseable);
 		switch(purchaseState) {
 		case PurchaseableListMenu.PurchaseState.Purchased:
+			isLocked = false;
 			imgBackground.color = purchasedBackgroundColor;
 
 			txtName.color = purchasedTextColor;
@@ -58,6 +59,7 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 			btnBuy.gameObject.SetActive(false);
 			break;
 		case PurchaseableListMenu.PurchaseState.CannotPurchase:
+			isLocked = false;
 			imgBackground.color = unlockedBackgroundColor;
 
 			txtName.color = normalTextColor;
@@ -65,6 +67,7 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 			btnBuy.gameObject.SetActive(false);
 			break;
 		case PurchaseableListMenu.PurchaseState.CanPurchase:
+			isLocked = false;
 			imgBackground.color = unlockedBackgroundColor;
 
 			txtName.color = normalTextColor;
@@ -77,11 +80,14 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 
 			txtName.color = normalTextColor;
 			txtDescription.color = normalTextColor;
+			btnBuy.gameObject.SetActive(true); // Visible but not clickable (interaction disabled in update)
 			break;
 		}
 
 		quantityIndicator.interactable = false;
 		if (presenter.ShouldDisplayProgressBar(menuId)) {
+			quantityIndicator.gameObject.SetActive(true);
+
 			int purchasedCount = presenter.GetPurchasedCount(menuId, purchaseable);
 			quantityIndicator.value = ((float) purchasedCount / purchaseable.GetQuantity());
 
@@ -94,11 +100,13 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 			float quantityIndicatorHeight = quantityIndicator.GetComponent<RectTransform>().rect.height;
 			quantityIndicator.gameObject.SetActive(false);
 
-			RectTransform rectName = txtName.GetComponent<RectTransform>();
-			rectName.sizeDelta = new Vector2(rectName.sizeDelta.x, rectName.sizeDelta.y + (quantityIndicatorHeight/2));
-
-			RectTransform rectDescription = txtDescription.GetComponent<RectTransform>();
-			rectDescription.sizeDelta = new Vector2(rectDescription.sizeDelta.x, rectDescription.sizeDelta.y + (quantityIndicatorHeight/2));
+			// TODO: Should adjust labels to fill space left by the quantity indicator, but doesn't work well
+			// and ReloadUI causes them to keep moving.
+//			RectTransform rectName = txtName.GetComponent<RectTransform>();
+//			rectName.sizeDelta = new Vector2(rectName.sizeDelta.x, rectName.sizeDelta.y + (quantityIndicatorHeight/2));
+//
+//			RectTransform rectDescription = txtDescription.GetComponent<RectTransform>();
+//			rectDescription.sizeDelta = new Vector2(rectDescription.sizeDelta.x, rectDescription.sizeDelta.y + (quantityIndicatorHeight/2));
 		}
 	}
 

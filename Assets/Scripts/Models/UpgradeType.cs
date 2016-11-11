@@ -8,6 +8,7 @@ public class UpgradeType {
 	public const int Network = 3;
 	public const int Compression = 4;
 	public const int Replication = 5;
+	public const int Computation = 6;
 
 	public static UpgradeType[] FromArray(JSONArray jsonArr) {
 		UpgradeType[] upgradeTypes = new UpgradeType[jsonArr.Count];

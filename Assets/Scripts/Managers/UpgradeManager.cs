@@ -29,7 +29,7 @@ public class UpgradeManager : MonoBehaviour {
 		if (timeToGenerate <= 0f) {
 			timeToGenerate = TimeBetweenBitGeneration;
 
-			float generatedBitCount = upgradeState.GeneratedBPS * GameManager.Instance.GameState.StoredBits * GameManager.Instance.CircuitManager.GetLitNodeCount();
+			float generatedBitCount = GetBitsToGeneratePerLitNode() * GameManager.Instance.CircuitManager.GetLitNodeCount();
 
 			#if UNITY_EDITOR
 			Debug.Log("Generating: " + generatedBitCount);
@@ -39,6 +39,10 @@ public class UpgradeManager : MonoBehaviour {
 				Mathf.RoundToInt(generatedBitCount)
 			);
 		}
+	}
+
+	public float GetBitsToGeneratePerLitNode() {
+		return upgradeState.GeneratedBPS * GameManager.Instance.GameState.StoredBits;
 	}
 
 	public string GetDescription(int type, float value) {
@@ -119,6 +123,17 @@ public class UpgradeManager : MonoBehaviour {
 		return null;
 	}
 
+	public UpgradeTier UpgradeTierFromId(int tierId) {
+		for (int i = 0; i < GameManager.Instance.GameConfiguration.UpgradeTiers.Length; i++) {
+			UpgradeTier tier = GameManager.Instance.GameConfiguration.UpgradeTiers[i];
+			if (tier.Id == tierId) {
+				return tier;
+			}
+		}
+
+		return null;
+	}
+
 	public void RecalculateUpgradeState() {
 		upgradeState = new UpgradeState();
 
@@ -142,6 +157,9 @@ public class UpgradeManager : MonoBehaviour {
 				break;
 			case UpgradeType.Replication:
 				upgradeState.GeneratedBPS += value;
+				break;
+			case UpgradeType.Computation:
+				upgradeState.BitValue += value;
 				break;
 			}
 		}

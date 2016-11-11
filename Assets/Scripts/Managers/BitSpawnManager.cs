@@ -41,7 +41,7 @@ public class BitSpawnManager : MonoBehaviour {
 		}
 	}
 
-	float TimeBetweenBitSpawns() {
+	public float TimeBetweenBitSpawns() {
 		return BaseTimeBetweenBitSpawns / GameManager.Instance.UpgradeManager.UpgradeState.InboundBPS;
 	}
 

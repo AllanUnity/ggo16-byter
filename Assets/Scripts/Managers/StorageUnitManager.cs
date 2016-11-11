@@ -40,14 +40,16 @@ public class StorageUnitManager : MonoBehaviour {
 	}
 
 	public void AddBits(int bits) {
-		if (bits == 0) {
+		if (bits <= 0) {
 			return;
 		}
 
+		float previousCount = GameManager.Instance.GameState.StoredBits;
 		GameManager.Instance.GameState.StoredBits = Mathf.Min(
-			GameManager.Instance.GameState.StoredBits + bits, 
+			GameManager.Instance.GameState.StoredBits + (bits * GameManager.Instance.UpgradeManager.UpgradeState.BitValue), 
 			GetMaxCapacity()
 		);
+		GameManager.Instance.GameState.LifetimeBits += GameManager.Instance.GameState.StoredBits - previousCount;
 	}
 
 }

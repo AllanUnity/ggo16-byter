@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 
+
+	private static float MenuRefreshInterval = .5f; // Time in seconds between active menu refreshes.
 	private static float HighlightMenuButtonAtPercentage = .9f;
 
 	private const int DeviceMenuId = 1;
@@ -15,10 +17,13 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 	public PurchaseableListMenu storageUnitList;
 	public PurchaseableListMenu upgradeList;
 	public TargetListMenu targetList;
+	public ExtrasMenu extrasMenu;
 
 	public Image imgStorageUnitsBtnBackground;
 
 	private GameObject[] menus;
+
+	private float timeToReloadUI;
 
 	private bool hasOpenMenu;
 	public bool HasOpenMenu {
@@ -32,7 +37,8 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 			deviceList.gameObject,
 			storageUnitList.gameObject,
 			upgradeList.gameObject,
-			targetList.gameObject
+			targetList.gameObject,
+			extrasMenu.gameObject
 		};
 
 		// Hide any open menus left by the editor
@@ -42,6 +48,8 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 		deviceList.Initialize(DeviceMenuId, this);
 		storageUnitList.Initialize(StorageUnitMenuId, this);
 		upgradeList.Initialize(UpgradeMenuId, this);
+
+		timeToReloadUI = MenuRefreshInterval;
 	}
 
 	void Update() {
@@ -49,6 +57,21 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 			imgStorageUnitsBtnBackground.color = GameManager.Instance.ColorManager.purpleColor;
 		} else {
 			imgStorageUnitsBtnBackground.color = GameManager.Instance.ColorManager.whiteColor;
+		}
+
+		timeToReloadUI -= Time.deltaTime;
+		if (timeToReloadUI <= 0f) {
+			timeToReloadUI = MenuRefreshInterval;
+
+			if (deviceList.gameObject.activeInHierarchy) {
+				deviceList.ReloadUI();
+			} else if (storageUnitList.gameObject.activeInHierarchy) {
+				storageUnitList.ReloadUI();
+			} else if (upgradeList.gameObject.activeInHierarchy) {
+				upgradeList.ReloadUI();
+			} else if (targetList.gameObject.activeInHierarchy) {
+				targetList.ReloadUI();
+			}
 		}
 	}
 		
@@ -69,6 +92,10 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 
 	public void DisplayTargetList() {
 		SetVisibleMenu(targetList.gameObject);
+	}
+
+	public void DisplayExtrasMenu() {
+		SetVisibleMenu(extrasMenu.gameObject);
 	}
 
 	public void CloseCurrentMenu() {

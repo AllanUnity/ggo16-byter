@@ -11,7 +11,8 @@ public class UpgradeTier {
 			tiers[i] = new UpgradeTier(
 				i,
 				json["name"].Value,
-				Upgrade.FromArray(i, json["upgrades"].AsArray)
+				Upgrade.FromArray(i, json["upgrades"].AsArray),
+				json["base-price"].AsFloat
 			);
 		}
 
@@ -39,9 +40,17 @@ public class UpgradeTier {
 		}
 	}
 
-	public UpgradeTier(int id, string name, Upgrade[] upgrades) {
+	private float basePrice;
+	public float BasePrice {
+		get {
+			return basePrice;
+		}
+	}
+
+	public UpgradeTier(int id, string name, Upgrade[] upgrades, float basePrice) {
 		this.id = id;
 		this.name = name;
 		this.upgrades = upgrades;
+		this.basePrice = basePrice;
 	}
 }

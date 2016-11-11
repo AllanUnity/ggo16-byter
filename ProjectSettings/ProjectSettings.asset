@@ -6,12 +6,12 @@ PlayerSettings:
   serializedVersion: 8
   productGUID: bfa6f697ba0894d04bd686cab07f5573
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Kyle Banks
-  productName: Leet
+  productName: Byter
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
@@ -19,8 +19,8 @@ PlayerSettings:
   m_VirtualRealitySplashScreen: {fileID: 0}
   defaultScreenWidth: 1000
   defaultScreenHeight: 750
-  defaultScreenWidthWeb: 450
-  defaultScreenHeightWeb: 800
+  defaultScreenWidthWeb: 1000
+  defaultScreenHeightWeb: 750
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   m_ActiveColorSpace: 0
@@ -94,8 +94,8 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.kylewbanks.leetgame
-  bundleVersion: 1.0
+  bundleIdentifier: com.kylewbanks.byter
+  bundleVersion: 0.1
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   xboxOneDisableKinectGpuReservation: 0
@@ -505,7 +505,7 @@ PlayerSettings:
   UNet_ServiceEnabled::UNet_ServiceEnabled: False
   Unity_Ads_ServiceEnabled::Unity_Ads_ServiceEnabled: False
   WebGL::emscriptenArgs: 
-  WebGL::template: APPLICATION:Default
+  WebGL::template: APPLICATION:Minimal
   additionalIl2CppArgs::additionalIl2CppArgs: 
   vectorPropertyNames:
   - Android::VR::enabledDevices

@@ -11,6 +11,9 @@ public class SaveManager : MonoBehaviour {
 
 	private float timeSinceSave;
 
+	void Start() {
+		Debug.Log("Using Game Save Path: " + GetGameSavePath());
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,7 +26,7 @@ public class SaveManager : MonoBehaviour {
 	}
 
 	void SaveGame() {
-		string gameSavePath = Application.persistentDataPath + GameSaveFilename;
+		string gameSavePath = GetGameSavePath();
 
 		if (GameManager.Instance.GameState.PurchasedUpgrades == null) {
 			GameManager.Instance.GameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
@@ -39,7 +42,7 @@ public class SaveManager : MonoBehaviour {
 		GameState gameState = null;
 
 		try {
-			string gameSavePath = Application.persistentDataPath + GameSaveFilename;
+			string gameSavePath = GetGameSavePath();
 
 			if(File.Exists(gameSavePath)) {
 				BinaryFormatter bf = new BinaryFormatter();
@@ -54,5 +57,9 @@ public class SaveManager : MonoBehaviour {
 		}
 
 		return gameState != null ? gameState : new GameState();
+	}
+
+	string GetGameSavePath() {
+		return Application.persistentDataPath + GameSaveFilename;
 	}
 }
