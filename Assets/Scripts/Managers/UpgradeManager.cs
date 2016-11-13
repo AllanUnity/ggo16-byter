@@ -6,6 +6,8 @@ public class UpgradeManager : MonoBehaviour {
 
 	private static float TimeBetweenBitGeneration = 1f; // Time in seconds after which to generate bits
 
+	public Sprite[] upgradeTypeIcons;
+
 	private UpgradeState upgradeState;
 	public UpgradeState UpgradeState {
 		get {
@@ -19,7 +21,10 @@ public class UpgradeManager : MonoBehaviour {
 	void Awake() {
 		upgradeCache = new Dictionary<int, Upgrade>();
 		timeToGenerate = TimeBetweenBitGeneration;
+	}
 
+	void Start() {
+		// Must be done in Start() because it relies on other managers being initialized.
 		RecalculateUpgradeState();
 	}
 
@@ -132,6 +137,10 @@ public class UpgradeManager : MonoBehaviour {
 		}
 
 		return null;
+	}
+
+	public Sprite GetUpgradeTypeIcon(int typeId) {
+		return upgradeTypeIcons[typeId - 1];
 	}
 
 	public void RecalculateUpgradeState() {

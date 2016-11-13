@@ -104,6 +104,6 @@ public class Upgrade : Purchaseable {
 	}
 
 	public Sprite GetIcon() {
-		return null; // TODO
+		return GameManager.Instance.UpgradeManager.GetUpgradeTypeIcon(type);
 	}
 }

@@ -171,13 +171,13 @@
 						"name": "Programmable Keyboard",
 						"type": 1,
 						"value": 0.0001,
-						"quantity": 10
+						"quantity": 5
 					},
 					{
 						"name": "Dial-Up",
 						"type": 3,
 						"value": 0.01,
-						"quantity": 10
+						"quantity": 20
 					},
 					{
 						"name": "Lossy Compression",
@@ -201,13 +201,13 @@
 						"name": "Scripting",
 						"type": 1,
 						"value": 0.0002,
-						"quantity": 10
+						"quantity": 5
 					},
 					{
 						"name": "Workplace Botnet",
 						"type": 2,
 						"value": 0.05,
-						"quantity": 1
+						"quantity": 2
 					},
 					{
 						"name": "2G",
@@ -231,19 +231,19 @@
 						"name": "Code Monkeys",
 						"type": 1,
 						"value": 0.0005,
-						"quantity": 20
+						"quantity": 5
 					},
 					{
 						"name": "City Botnet",
 						"type": 2,
-						"value": 0.10,
-						"quantity": 1
+						"value": 0.03,
+						"quantity": 5
 					},
 					{
 						"name": "3G",
 						"type": 3,
 						"value": 0.03,
-						"quantity": 15
+						"quantity": 25
 					},
 					{
 						"name": "Lossless Compression",
@@ -260,26 +260,26 @@
 					{
 						"name": "Open Source Projects",
 						"type": 1,
-						"value": 0.10,
+						"value": 0.05,
 						"quantity": 1
 					},
 					{
 						"name": "Regional Botnet",
 						"type": 2,
-						"value": 0.15,
-						"quantity": 1
+						"value": 0.015,
+						"quantity": 15
 					},
 					{
 						"name": "4G",
 						"type": 3,
-						"value": 0.04,
-						"quantity": 10
+						"value": 0.02,
+						"quantity": 20
 					},
 					{
 						"name": "Version Control",
 						"type": 5,
-						"value": 0.1,
-						"quantity": 3
+						"value": 0.05,
+						"quantity": 6
 					}
 				]
 			},
@@ -321,7 +321,7 @@
 						"name": "Cron Jobs",
 						"type": 1,
 						"value": 0.001,
-						"quantity": 40
+						"quantity": 10
 					},
 					{
 						"name": "Cable",
@@ -332,14 +332,14 @@
 					{
 						"name": "ZIP",
 						"type": 4,
-						"value": 0.09,
-						"quantity": 30
+						"value": 0.03,
+						"quantity": 50
 					},
 					{
-						"name": "Master/Slave",
+						"name": "Master/Slave Replication",
 						"type": 5,
-						"value": 0.2,
-						"quantity": 1
+						"value": 0.02,
+						"quantity": 10
 					}
 				]
 			},
@@ -380,7 +380,7 @@
 					{	
 						"name": "Alien Robotics",
 						"type": 1,
-						"value": 0.002,
+						"value": 0.001,
 						"quantity": 10
 					},
 					{	

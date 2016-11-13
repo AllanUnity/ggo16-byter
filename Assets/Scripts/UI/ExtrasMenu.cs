@@ -6,6 +6,7 @@ public class ExtrasMenu : MonoBehaviour {
 
 	public Button btnStats;
 	public Button btnAbout;
+	public Button btnCredits;
 
 	public Color buttonColorOn;
 	public Color buttonColorOff;
@@ -14,6 +15,7 @@ public class ExtrasMenu : MonoBehaviour {
 
 	public GameObject viewStats;
 	public GameObject viewAbout;
+	public GameObject viewCredits;
 
 	public Text txtLifetimeBits;
 	public Text txtInboundBps;
@@ -29,11 +31,13 @@ public class ExtrasMenu : MonoBehaviour {
 	void Start() {
 		buttons = new Button[]{
 			btnStats,
-			btnAbout
+			btnAbout,
+			btnCredits
 		};
 		views = new GameObject[]{
 			viewStats, 
-			viewAbout
+			viewAbout,
+			viewCredits
 		};
 
 		DisplayStats();
@@ -62,6 +66,11 @@ public class ExtrasMenu : MonoBehaviour {
 	public void DisplayAbout() {
 		SetActiveButton(btnAbout);
 		SetActiveView(viewAbout);
+	}
+
+	public void DisplayCredits() {
+		SetActiveButton(btnCredits);
+		SetActiveView(viewCredits);
 	}
 
 	public void OpenTwitter() {
