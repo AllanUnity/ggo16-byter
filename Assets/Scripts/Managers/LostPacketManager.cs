@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LostPacketManager : MonoBehaviour {
 
-	private static float SpawnPaddingFactor = 1.2f;
+	private static float SpawnPaddingFactor = 2.2f;
 
 	private static float MinTimeBetweenPackets = 1f;
 	private static float MaxTimeBetweenPackets = 20f;
@@ -67,6 +67,11 @@ public class LostPacketManager : MonoBehaviour {
 				hit.collider.gameObject.GetComponent<LostPacket>().OnClicked();
 			}
 		}
+	}
+
+	public void OnLostPacketRetrieved(LostPacket lostPacket) {
+		GameManager.Instance.GameState.LostPacketsCollected ++;
+		Destroy(lostPacket.gameObject, .5f);
 	}
 
 	void CalculateNextPacketTime() {

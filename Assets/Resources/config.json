@@ -133,7 +133,7 @@
 			{
 				"name": "Automation",
 				"id": 1,
-				"description": "Generate @ of Stored Bits Per Lit Node Each Second"
+				"description": "+@ of Stored Bits (per/sec) When a Node is Lit"
 			},
 			{
 				"name": "Botnet",

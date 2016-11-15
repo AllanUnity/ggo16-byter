@@ -4,8 +4,9 @@ using System.Collections;
 public class LostPacket : MonoBehaviour {
 
 	private static float LightIntensityIncreaseSpeed = 5f;
-	private static float MovementSpeed = 1000f;
+	private static float MovementSpeed = 15f;
 	private static float TargetDistanceToDestroy = 1f;
+	private static float PositionY = 8f;
 
 	private Light spotlight;
 	private float maxLightIntensity;
@@ -20,6 +21,7 @@ public class LostPacket : MonoBehaviour {
 			return target;
 		}
 		set {
+			value.y = PositionY;
 			target = value;
 			transform.LookAt(target);
 		}
@@ -32,22 +34,29 @@ public class LostPacket : MonoBehaviour {
 
 		rb = GetComponent<Rigidbody>();
 	}
+
+	void Start() {
+		// Always use a consistent Y value, regardless or prefab or target settings.
+		Vector3 pos = transform.position;
+		pos.y = PositionY;
+		transform.position = pos;
+
+		// Move towards the target
+		rb.velocity = (target - transform.position).normalized * MovementSpeed;
+	}
 	
 	void Update() {
 		// Update the spotlight intensity
 		if (spotlight.intensity < maxLightIntensity) {
 			spotlight.intensity = Mathf.Min(maxLightIntensity, spotlight.intensity + (Time.deltaTime * LightIntensityIncreaseSpeed));
 		}
+	}
 
-		// Move towards the target
-		if (!isClicked) {
-			rb.AddForce((target - transform.position).normalized * MovementSpeed * Time.deltaTime);
-
-			// Check if we've reached the target
-			if (Vector3.Distance(transform.position, target) < TargetDistanceToDestroy) {
-				Destroy(this.gameObject);
-			}
-		} 
+	void FixedUpdate() {
+		// Check if we've reached the target
+		if (!isClicked && Vector3.Distance(transform.position, target) < TargetDistanceToDestroy) {
+			Destroy(this.gameObject);
+		}
 	}
 
 	public void OnClicked() {
@@ -69,7 +78,7 @@ public class LostPacket : MonoBehaviour {
 		}
 
 		if (col.gameObject.CompareTag("Ground")) {
-			Destroy(this.gameObject, 1);
+			GameManager.Instance.LostPacketManager.OnLostPacketRetrieved(this);
 		}
 	}
 }

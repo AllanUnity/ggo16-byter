@@ -24,7 +24,7 @@ public class UpgradeManager : MonoBehaviour {
 	}
 
 	void Start() {
-		// Must be done in Start() because it relies on other managers being initialized.
+		// Must be done in Start() because it relies on other managers to be initialized.
 		RecalculateUpgradeState();
 	}
 
@@ -34,15 +34,17 @@ public class UpgradeManager : MonoBehaviour {
 		if (timeToGenerate <= 0f) {
 			timeToGenerate = TimeBetweenBitGeneration;
 
-			float generatedBitCount = GetBitsToGeneratePerLitNode() * GameManager.Instance.CircuitManager.GetLitNodeCount();
+			if (GameManager.Instance.CircuitManager.GetLitNodeCount() > 0) {
+				float generatedBitCount = GetBitsToGeneratePerLitNode();// * GameManager.Instance.CircuitManager.GetLitNodeCount();
 
-			#if UNITY_EDITOR
-			Debug.Log("Generating: " + generatedBitCount);
-			#endif
+				#if UNITY_EDITOR
+				Debug.Log("Generating: " + generatedBitCount);
+				#endif
 
-			GameManager.Instance.StorageUnitManager.AddBits(
-				Mathf.RoundToInt(generatedBitCount)
-			);
+				GameManager.Instance.StorageUnitManager.AddBits(
+					generatedBitCount
+				);
+			}
 		}
 	}
 
@@ -153,7 +155,7 @@ public class UpgradeManager : MonoBehaviour {
 
 			switch(upgrade.Type) {
 			case UpgradeType.Automation:
-				upgradeState.InboundBPS += value;
+				upgradeState.GeneratedBPS += value;	
 				break;
 			case UpgradeType.Botnet:
 				upgradeState.OutboundBPSForAttack -= value;
@@ -165,7 +167,7 @@ public class UpgradeManager : MonoBehaviour {
 				upgradeState.StorageCapacity += value;
 				break;
 			case UpgradeType.Replication:
-				upgradeState.GeneratedBPS += value;
+				upgradeState.InboundBPS += value;
 				break;
 			case UpgradeType.Computation:
 				upgradeState.BitValue += value;

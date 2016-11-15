@@ -39,7 +39,7 @@ public class StorageUnitManager : MonoBehaviour {
 		return GameManager.Instance.GameState.StorageCapacity * GameManager.Instance.UpgradeManager.UpgradeState.StorageCapacity;
 	}
 
-	public void AddBits(int bits) {
+	public void AddBits(float bits) {
 		if (bits <= 0) {
 			return;
 		}

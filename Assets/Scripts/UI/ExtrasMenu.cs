@@ -4,6 +4,8 @@ using System.Collections;
 
 public class ExtrasMenu : MonoBehaviour {
 
+	private static float UpdateStatsInterval = 0.25f;
+
 	public Button btnStats;
 	public Button btnAbout;
 	public Button btnCredits;
@@ -18,6 +20,7 @@ public class ExtrasMenu : MonoBehaviour {
 	public GameObject viewCredits;
 
 	public Text txtLifetimeBits;
+	public Text txtLostPacketsRetrieved;
 	public Text txtInboundBps;
 	public Text txtOutboundBps;
 	public Text txtStorageCapacity;
@@ -26,6 +29,8 @@ public class ExtrasMenu : MonoBehaviour {
 
 	private Button[] buttons;
 	private GameObject[] views;
+
+	private float timeSinceUpdateStats;
 
 	// Use this for initialization
 	void Start() {
@@ -40,6 +45,8 @@ public class ExtrasMenu : MonoBehaviour {
 			viewCredits
 		};
 
+		// Always update stats immediately
+		timeSinceUpdateStats = UpdateStatsInterval;
 		DisplayStats();
 	}
 	
@@ -49,13 +56,21 @@ public class ExtrasMenu : MonoBehaviour {
 			return;
 		}
 
-		BitUtil.TextFormat format = BitUtil.TextFormat.Long;
-		txtLifetimeBits.text = BitUtil.StringFormat(GameManager.Instance.GameState.LifetimeBits, format, true, false);
-		txtInboundBps.text = BitUtil.StringFormat(1f / GameManager.Instance.BitSpawnManager.TimeBetweenBitSpawns(), format, true, false);
-		txtOutboundBps.text = BitUtil.StringFormat(GameManager.Instance.DeviceManager.OutboundBps(), format, true, false);
-		txtStorageCapacity.text = BitUtil.StringFormat(GameManager.Instance.StorageUnitManager.GetMaxCapacity(), format, true, false);
-		txtBitsGeneratedPerSec.text = BitUtil.StringFormat(GameManager.Instance.UpgradeManager.GetBitsToGeneratePerLitNode(), format, true, false);
-		txtBitValue.text = BitUtil.StringFormat(GameManager.Instance.UpgradeManager.UpgradeState.BitValue, format, true, false);
+		timeSinceUpdateStats += Time.deltaTime;
+		if (timeSinceUpdateStats >= UpdateStatsInterval) {
+			timeSinceUpdateStats = 0f;
+
+			BitUtil.TextFormat format = BitUtil.TextFormat.Long;
+			bool trim = true;
+			bool breakLine = false;
+			txtLifetimeBits.text = BitUtil.StringFormat(GameManager.Instance.GameState.LifetimeBits, format, trim, breakLine);
+			txtLostPacketsRetrieved.text = GameManager.Instance.GameState.LostPacketsCollected.ToString();
+			txtInboundBps.text = BitUtil.StringFormat(1f / GameManager.Instance.BitSpawnManager.TimeBetweenBitSpawns(), format, trim, breakLine);
+			txtOutboundBps.text = BitUtil.StringFormat(GameManager.Instance.DeviceManager.OutboundBps(), format, trim, breakLine);
+			txtStorageCapacity.text = BitUtil.StringFormat(GameManager.Instance.StorageUnitManager.GetMaxCapacity(), format, trim, breakLine);
+			txtBitsGeneratedPerSec.text = BitUtil.StringFormat(GameManager.Instance.UpgradeManager.GetBitsToGeneratePerLitNode(), format, trim, breakLine);
+			txtBitValue.text = BitUtil.StringFormat(GameManager.Instance.UpgradeManager.UpgradeState.BitValue, format, trim, breakLine);
+		}
 	}
 
 	public void DisplayStats() {
@@ -78,7 +93,7 @@ public class ExtrasMenu : MonoBehaviour {
 	}
 
 	public void OpenGitHub() {
-		Application.OpenURL("https://github.com/KyleBanks/game-off-2016");
+		Application.OpenURL("https://github.com/KyleBanks/ggo16-byter");
 	}
 
 	void SetActiveButton(Button activeButton) {

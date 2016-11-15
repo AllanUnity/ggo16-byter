@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
 	public MenuManager MenuManager { get; set; }
 	public ColorManager ColorManager { get; set; }
 	public CircuitManager CircuitManager { get; set; }
+	public LostPacketManager LostPacketManager { get; set; }
 
 	public GameConfiguration GameConfiguration { get; set; }
 	public GameState GameState { get; set; }
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour {
 		MenuManager = GetComponent<MenuManager>();
 		ColorManager = GetComponent<ColorManager>();
 		CircuitManager = GetComponent<CircuitManager>();
+		LostPacketManager = GetComponent<LostPacketManager>();
 
 		// Initialize the game.
 		LoadConfiguration();

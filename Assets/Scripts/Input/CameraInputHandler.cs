@@ -4,8 +4,8 @@ using System.Collections;
 public class CameraInputHandler : MonoBehaviour {
 
 	private static float DragSpeed = 20;
-	public static float[] BoundsX = new float[]{-15.0f, 5.0f};
-	public static float[] BoundsZ = new float[]{-20.0f, 5.0f};
+	public static float[] BoundsX = new float[]{-10.0f, 5.0f};
+	public static float[] BoundsZ = new float[]{-22.0f, 2.0f};
 
 	private bool touchActive;
 	private Vector3 touchPos;
