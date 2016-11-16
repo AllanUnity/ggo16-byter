@@ -19,7 +19,7 @@ public class UpgradeState {
 	}
 
 	public override string ToString() {
-		return string.Format ("[UpgradeState: InboundBPS={0}, OutboundBPSForAttack={1}, OutboundBPS={2}, StorageCapacity={3}, GeneratedBPS={4}, BitValue={5}]", InboundBPS, OutboundBPSForAttack, OutboundBPS, StorageCapacity, GeneratedBPS, BitValue);
+		return string.Format("[UpgradeState: InboundBPS={0}, OutboundBPSForAttack={1}, OutboundBPS={2}, StorageCapacity={3}, GeneratedBPS={4}, BitValue={5}]", InboundBPS, OutboundBPSForAttack, OutboundBPS, StorageCapacity, GeneratedBPS, BitValue);
 	}
 
 }

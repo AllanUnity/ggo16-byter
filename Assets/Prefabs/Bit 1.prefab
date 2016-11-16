@@ -27,7 +27,7 @@ GameObject:
   - 108: {fileID: 108000012691699294}
   m_Layer: 0
   m_Name: Bit 1
-  m_TagString: Untagged
+  m_TagString: Bit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

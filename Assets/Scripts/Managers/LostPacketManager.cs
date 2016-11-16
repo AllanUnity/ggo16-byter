@@ -8,7 +8,11 @@ public class LostPacketManager : MonoBehaviour {
 	private static float MinTimeBetweenPackets = 1f;
 	private static float MaxTimeBetweenPackets = 20f;
 
+	private static float RewardMinimum = .001f;
+	private static float RewardMaximum = .010f;
+
 	public GameObject lostPacketPrefab;
+	public GameObject lostPacketParticleCollectionPrefab;
 
 	private float timeUntilNextPacket;
 
@@ -64,14 +68,30 @@ public class LostPacketManager : MonoBehaviour {
 		RaycastHit hit;
 		if (Physics.Raycast(ray, out hit)) {
 			if (hit.collider.CompareTag("Lost Packet")) {
-				hit.collider.gameObject.GetComponent<LostPacket>().OnClicked();
+				OnLostPacketRetrieved(hit.collider.gameObject);
 			}
 		}
 	}
 
-	public void OnLostPacketRetrieved(LostPacket lostPacket) {
+	void OnLostPacketRetrieved(GameObject lostPacket) {
+		// Display the particle effect, and destroy after it's completed.
+		GameObject effect = (GameObject) Instantiate(lostPacketParticleCollectionPrefab, lostPacket.transform.position, Quaternion.identity);
+		Destroy(effect, 2f); // Note: Should probably use the particles duration (plus buffer) but this is better performance and relatively safe.
+
+		// Determine and display the reward
+		float factor = Random.Range(RewardMinimum, RewardMaximum);
+		float storageCapacity = GameManager.Instance.StorageUnitManager.GetMaxCapacity();
+		float reward = storageCapacity * factor;
+		#if UNITY_EDITOR
+		Debug.Log(string.Format("Reward for collecting LostPacket: Factor = {0}, Storage Capacity = {1}, Reward = {2}", factor, storageCapacity, reward));
+		#endif
+		GameManager.Instance.StorageUnitManager.AddBits(reward);
+
 		GameManager.Instance.GameState.LostPacketsCollected ++;
-		Destroy(lostPacket.gameObject, .5f);
+		TopMenu.Instance.DisplayReward(reward);
+
+		// Destroy the lost packet
+		Destroy(lostPacket);
 	}
 
 	void CalculateNextPacketTime() {

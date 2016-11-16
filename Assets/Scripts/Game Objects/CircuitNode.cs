@@ -31,8 +31,11 @@ public class CircuitNode : MonoBehaviour {
 	void FixedUpdate() {
 		Debug.DrawRay(transform.position, Vector3.up, Color.cyan);
 
-		if (Physics.Raycast(transform.position, Vector3.up)) {
-			timeSinceBitAbove = 0f;
+		RaycastHit hit;
+		if (Physics.Raycast(transform.position, Vector3.up, out hit)) {
+			if (hit.collider.CompareTag("Bit")) {
+				timeSinceBitAbove = 0f;
+			}
 		} else {
 			timeSinceBitAbove += Time.deltaTime;
 		}

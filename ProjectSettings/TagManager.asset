@@ -7,6 +7,8 @@ TagManager:
   - Node
   - Lost Packet
   - Ground
+  - Bit
+  - Top Menu
   layers:
   - Default
   - TransparentFX

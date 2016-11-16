@@ -35,6 +35,8 @@ public class UpgradeManager : MonoBehaviour {
 			timeToGenerate = TimeBetweenBitGeneration;
 
 			if (GameManager.Instance.CircuitManager.GetLitNodeCount() > 0) {
+				// Note: No longer applying the upgrade PER lit node, rather just a 
+				// flat generation value as long as at least asingle node is lit.
 				float generatedBitCount = GetBitsToGeneratePerLitNode();// * GameManager.Instance.CircuitManager.GetLitNodeCount();
 
 				#if UNITY_EDITOR
@@ -53,19 +55,13 @@ public class UpgradeManager : MonoBehaviour {
 	}
 
 	public string GetDescription(int type, float value) {
-		for (int i = 0; i < GameManager.Instance.GameConfiguration.UpgradeTypes.Length; i++) {
-			UpgradeType upgradeType = GameManager.Instance.GameConfiguration.UpgradeTypes[i];
-			if (upgradeType.Id == type) {
-				string valueString = (value * 100).ToString("0.00"); 
-				if (valueString.EndsWith("0")) {
-					valueString = valueString.Substring(0, valueString.Length - 1);
-				}
-
-				return upgradeType.Description.Replace("@", valueString + "%");
-			}
+		UpgradeType upgradeType = UpgradeTypeFromId(type);
+		string valueString = (value * 100).ToString("0.00"); 
+		if (valueString.EndsWith("0")) {
+			valueString = valueString.Substring(0, valueString.Length - 1);
 		}
 
-		return "";
+		return upgradeType.Description.Replace("@", valueString + "%");
 	}
 
 	public bool IsTierUnlocked(int tierId) {
@@ -151,8 +147,15 @@ public class UpgradeManager : MonoBehaviour {
 		List<PurchasedUpgrade> purchasedUpgrades = GameManager.Instance.GameState.PurchasedUpgrades;
 		for (int i = 0; i < purchasedUpgrades.Count; i++) {
 			Upgrade upgrade = UpgradeFromId(purchasedUpgrades[i].UpgradeId);
-			float value = upgrade.Value * purchasedUpgrades[i].QuantityPurchased;
 
+			// Should only really happen on devices used for development. Caused by moving upgrades around tiers,
+			// and the ID being modified.
+			if (upgrade == null) {
+				Debug.Log("Failed to find UpgradeFromId: " + purchasedUpgrades[i].UpgradeId);
+				continue;
+			}
+
+			float value = upgrade.Value * purchasedUpgrades[i].QuantityPurchased;
 			switch(upgrade.Type) {
 			case UpgradeType.Automation:
 				upgradeState.GeneratedBPS += value;	

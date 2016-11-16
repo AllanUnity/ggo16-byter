@@ -97,11 +97,11 @@ public class PurchaseableListMenuItem : MonoBehaviour {
 				quantityIndicatorLabel.text = "x" + purchasedCount.ToString("0");
 			}
 		} else {
-			float quantityIndicatorHeight = quantityIndicator.GetComponent<RectTransform>().rect.height;
 			quantityIndicator.gameObject.SetActive(false);
 
 			// TODO: Should adjust labels to fill space left by the quantity indicator, but doesn't work well
 			// and ReloadUI causes them to keep moving.
+//			float quantityIndicatorHeight = quantityIndicator.GetComponent<RectTransform>().rect.height;
 //			RectTransform rectName = txtName.GetComponent<RectTransform>();
 //			rectName.sizeDelta = new Vector2(rectName.sizeDelta.x, rectName.sizeDelta.y + (quantityIndicatorHeight/2));
 //

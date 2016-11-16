@@ -4,7 +4,7 @@ using System.Collections;
 public class LostPacket : MonoBehaviour {
 
 	private static float LightIntensityIncreaseSpeed = 5f;
-	private static float MovementSpeed = 15f;
+	private static float MovementSpeed = 10f;
 	private static float TargetDistanceToDestroy = 1f;
 	private static float PositionY = 8f;
 
@@ -13,8 +13,6 @@ public class LostPacket : MonoBehaviour {
 
 	private Rigidbody rb;
 	private Vector3 target;
-
-	private bool isClicked;
 
 	public Vector3 Target {
 		get {
@@ -54,31 +52,8 @@ public class LostPacket : MonoBehaviour {
 
 	void FixedUpdate() {
 		// Check if we've reached the target
-		if (!isClicked && Vector3.Distance(transform.position, target) < TargetDistanceToDestroy) {
+		if (Vector3.Distance(transform.position, target) < TargetDistanceToDestroy) {
 			Destroy(this.gameObject);
-		}
-	}
-
-	public void OnClicked() {
-		if (isClicked) {
-			return;
-		}
-		isClicked = true;
-
-		#if UNITY_EDITOR 
-		Debug.Log("Packet Hit: " + this);
-		#endif
-
-		rb.useGravity = true;
-	}
-
-	void OnCollisionEnter(Collision col) {
-		if (!isClicked) {
-			return;
-		}
-
-		if (col.gameObject.CompareTag("Ground")) {
-			GameManager.Instance.LostPacketManager.OnLostPacketRetrieved(this);
 		}
 	}
 }
