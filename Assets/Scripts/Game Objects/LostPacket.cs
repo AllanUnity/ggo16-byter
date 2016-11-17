@@ -3,34 +3,40 @@ using System.Collections;
 
 public class LostPacket : MonoBehaviour {
 
+	public interface Listener {
+		void OnLostPacketReachedTarget(LostPacket lostPacket);
+	}
+
 	private static float LightIntensityIncreaseSpeed = 5f;
-	private static float MovementSpeed = 10f;
-	private static float TargetDistanceToDestroy = 1f;
+	private static float MovementTimePerUnit = .075f;
 	private static float PositionY = 8f;
 
 	private Light spotlight;
 	private float maxLightIntensity;
 
-	private Rigidbody rb;
 	private Vector3 target;
+	private Vector3 startPosition;
+	private float movementTime;
+	private float totalMovementTime;
 
-	public Vector3 Target {
-		get {
-			return target;
-		}
-		set {
-			value.y = PositionY;
-			target = value;
-			transform.LookAt(target);
-		}
+	private Listener listener;
+
+	public void Initialize(Listener listener, Vector3 target) {
+		this.listener = listener;
+		this.target = target;
+		this.startPosition = transform.position;
+
+		this.target.y = PositionY;
+		this.startPosition.y = PositionY;
+
+		this.movementTime = 0f;
+		this.totalMovementTime = Vector3.Distance(startPosition, target) * MovementTimePerUnit;
 	}
 
 	void Awake() {
 		spotlight = GetComponentInChildren<Light>();
 		maxLightIntensity = spotlight.intensity;
 		spotlight.intensity = 0f;
-
-		rb = GetComponent<Rigidbody>();
 	}
 
 	void Start() {
@@ -38,9 +44,6 @@ public class LostPacket : MonoBehaviour {
 		Vector3 pos = transform.position;
 		pos.y = PositionY;
 		transform.position = pos;
-
-		// Move towards the target
-		rb.velocity = (target - transform.position).normalized * MovementSpeed;
 	}
 	
 	void Update() {
@@ -48,12 +51,15 @@ public class LostPacket : MonoBehaviour {
 		if (spotlight.intensity < maxLightIntensity) {
 			spotlight.intensity = Mathf.Min(maxLightIntensity, spotlight.intensity + (Time.deltaTime * LightIntensityIncreaseSpeed));
 		}
-	}
 
-	void FixedUpdate() {
+		// Move towards the target
+		movementTime += Time.deltaTime;
+		transform.position = Vector3.Lerp(startPosition, target, movementTime / totalMovementTime);
+		transform.LookAt(target);
+
 		// Check if we've reached the target
-		if (Vector3.Distance(transform.position, target) < TargetDistanceToDestroy) {
-			Destroy(this.gameObject);
+		if (movementTime >= totalMovementTime) {
+			listener.OnLostPacketReachedTarget(this);
 		}
 	}
 }

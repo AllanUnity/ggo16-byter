@@ -2,12 +2,19 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TopMenu : MonoBehaviour {
+public class TopMenu : MonoBehaviour, LostPacketRewardText.Listener {
 
 	public static TopMenu Instance;
 
+	private static Vector2 LostPacketRewardDisplayOffset = new Vector2(0f, 10f);
+
 	public Text txtStoredBits;
 	public Text txtInboundBitsPerSec;
+
+	public GameObject lostPacketRewardContainer;
+	public GameObject lostPacketRewardTextPrefab;
+
+	private ObjectPool lostPacketRewardTextPool;
 
 	private float inboundTime;
 	private float inboundBits;
@@ -24,6 +31,9 @@ public class TopMenu : MonoBehaviour {
 		// Clear text left by the editor
 		txtStoredBits.text = "";
 		txtInboundBitsPerSec.text = "";
+
+		// Initialize the object pool
+		lostPacketRewardTextPool = new LostPacketRewardTextPool(lostPacketRewardTextPrefab, 5, lostPacketRewardContainer);
 	}
 
 	void Start() {
@@ -60,7 +70,18 @@ public class TopMenu : MonoBehaviour {
 		txtStoredBits.text = BitUtil.StringFormat(GameManager.Instance.GameState.StoredBits, BitUtil.TextFormat.Long);
 	}
 
-	public void DisplayReward(float amount) {
-		// TODO
+	/**
+	 * Displays the reward text at the specified position, in pixel screen coordinates (not world space!).
+	 */
+	public void DisplayReward(Vector2 pos, float amount) {
+		// Display the text at the position specified.
+		GameObject obj = lostPacketRewardTextPool.GetInstance();
+		obj.transform.position = pos + LostPacketRewardDisplayOffset;
+		obj.GetComponent<LostPacketRewardText>().Initialize(this, amount);
+	}
+
+	// LostPacketRewardText.Listener Implementation
+	public void OnRewardTextComplete(LostPacketRewardText rewardText) {
+		lostPacketRewardTextPool.ReturnInstance(rewardText.gameObject);
 	}
 }

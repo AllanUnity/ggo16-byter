@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LostPacketManager : MonoBehaviour {
+public class LostPacketManager : MonoBehaviour, LostPacket.Listener {
 
 	private static float SpawnPaddingFactor = 2.2f;
 
@@ -14,7 +14,13 @@ public class LostPacketManager : MonoBehaviour {
 	public GameObject lostPacketPrefab;
 	public GameObject lostPacketParticleCollectionPrefab;
 
+	private ObjectPool lostPacketPool;
+
 	private float timeUntilNextPacket;
+
+	void Awake() {
+		lostPacketPool = new LostPacketPool(lostPacketPrefab, 5);
+	}
 
 	void Start() {
 		CalculateNextPacketTime();
@@ -26,14 +32,14 @@ public class LostPacketManager : MonoBehaviour {
 			SpawnPacket();
 		}
 			
-		if (Input.GetMouseButtonUp(0)) {
-			HandleClick();
+		// If there's an open menu ignore the touch.
+		if (! GameManager.Instance.MenuManager.HasOpenMenu) {
+			CheckForClicks();
 		}
 	}
 
-	// TODO: Wrap this in an object pool
 	void SpawnPacket() {
-		GameObject packet = (GameObject) Instantiate(lostPacketPrefab);
+		GameObject packet = lostPacketPool.GetInstance();
 
 		bool fromLeft = Random.value < .5f;
 		float paddingZ = Camera.main.orthographicSize * SpawnPaddingFactor;
@@ -47,19 +53,27 @@ public class LostPacketManager : MonoBehaviour {
 		Vector3 target = pos;
 		target.x = -target.x;
 		target.z = -target.z;
-		packet.GetComponent<LostPacket>().Target = target;
+		packet.GetComponent<LostPacket>().Initialize(this, target);
 
 		CalculateNextPacketTime();
 	}
 
-	void HandleClick() {
-		// If there's an open menu, or the clicker is being pressed, ignore the touch.
-		if (GameManager.Instance.MenuManager.HasOpenMenu || GameManager.Instance.BitSpawnManager.IsSpawningBits) {
-			return;
+	void CheckForClicks() {
+		if (Input.GetMouseButtonDown(0)) {
+			HandleClick(Input.mousePosition);
+		} else if (Input.touchCount > 0) {
+			for (int i = 0; i < Input.touchCount; i++) {
+				Touch touch = Input.GetTouch(i);
+				if (touch.phase == TouchPhase.Began) {
+					HandleClick(touch.position);
+				}
+			}
 		}
+	}
 
+	void HandleClick(Vector3 pos) {
 		// Create a ray from the mouse position through the game using the angle and location of the camera.
-		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		Ray ray = Camera.main.ScreenPointToRay(pos);
 		#if UNITY_EDITOR
 		Debug.DrawRay(ray.origin, ray.direction * 30, Color.yellow);
 		#endif
@@ -75,23 +89,28 @@ public class LostPacketManager : MonoBehaviour {
 
 	void OnLostPacketRetrieved(GameObject lostPacket) {
 		// Display the particle effect, and destroy after it's completed.
+		// Note: Not pooling this particle effect because Unity has issues with reseting particle systems. It's possible, so may 
+		// revisit in the future. For now, no pool.
 		GameObject effect = (GameObject) Instantiate(lostPacketParticleCollectionPrefab, lostPacket.transform.position, Quaternion.identity);
 		Destroy(effect, 2f); // Note: Should probably use the particles duration (plus buffer) but this is better performance and relatively safe.
 
-		// Determine and display the reward
+		// Determine the reward for collection
 		float factor = Random.Range(RewardMinimum, RewardMaximum);
 		float storageCapacity = GameManager.Instance.StorageUnitManager.GetMaxCapacity();
 		float reward = storageCapacity * factor;
 		#if UNITY_EDITOR
 		Debug.Log(string.Format("Reward for collecting LostPacket: Factor = {0}, Storage Capacity = {1}, Reward = {2}", factor, storageCapacity, reward));
 		#endif
-		GameManager.Instance.StorageUnitManager.AddBits(reward);
 
+		// Notify the appropriate systems
+		GameManager.Instance.StorageUnitManager.AddBits(reward);
 		GameManager.Instance.GameState.LostPacketsCollected ++;
-		TopMenu.Instance.DisplayReward(reward);
+
+		// Display the reward
+		TopMenu.Instance.DisplayReward(Camera.main.WorldToScreenPoint(lostPacket.transform.position), reward);
 
 		// Destroy the lost packet
-		Destroy(lostPacket);
+		lostPacketPool.ReturnInstance(lostPacket);
 	}
 
 	void CalculateNextPacketTime() {
@@ -100,5 +119,11 @@ public class LostPacketManager : MonoBehaviour {
 		#if UNITY_EDITOR
 		Debug.Log("Next Packet In: " + timeUntilNextPacket);
 		#endif
+	}
+
+	// LostPacket.Listener Implementation
+
+	public void OnLostPacketReachedTarget(LostPacket lostPacket) {
+		lostPacketPool.ReturnInstance(lostPacket.gameObject);
 	}
 }
