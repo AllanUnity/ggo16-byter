@@ -10,6 +10,8 @@ public class TopMenu : MonoBehaviour, LostPacketRewardText.Listener {
 
 	public Text txtStoredBits;
 	public Text txtInboundBitsPerSec;
+	public Text txtAdditionalBitValue;
+	public GameObject additionalBitValueContainer;
 
 	public GameObject lostPacketRewardContainer;
 	public GameObject lostPacketRewardTextPrefab;
@@ -63,6 +65,14 @@ public class TopMenu : MonoBehaviour, LostPacketRewardText.Listener {
 
 			inboundTime = 0f;
 			inboundBits = 0f;
+		}
+
+		float additionalBitValue = GameManager.Instance.UpgradeManager.GetAdditionalBitValueForLitNodes();
+		if (additionalBitValue == 0f) {
+			additionalBitValueContainer.SetActive(false);
+		} else {
+			additionalBitValueContainer.SetActive(true);
+			txtAdditionalBitValue.text = (1 + additionalBitValue).ToString("0.00") + "x";
 		}
 	}
 

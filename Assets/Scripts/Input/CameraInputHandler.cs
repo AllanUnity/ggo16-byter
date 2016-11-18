@@ -4,18 +4,25 @@ using System.Collections;
 public class CameraInputHandler : MonoBehaviour {
 
 	private static float PanSpeed = 20f;
-	private static float ZoomSpeed = 0.1f;
+	private static float ZoomSpeedTouch = 0.1f;
+	private static float ZoomSpeedMouse = .5f;
 
 	public static float[] BoundsX = new float[]{-10f, 5f};
-	public static float[] BoundsY = new float[]{10f, 35f}; 
 	public static float[] BoundsZ = new float[]{-18f, -4f};
+	public static float[] ZoomBounds = new float[]{10f, 70f}; 
+
+	private Camera cam;
 
 	private bool panActive;
 	private Vector3 lastPanPosition;
 	private int panFingerId; // Touch mode only
 
 	private bool zoomActive;
-	private Vector2[] lastZoomPositions;
+	private Vector2[] lastZoomPositions; // Touch mode only
+
+	void Awake() {
+		cam = GetComponent<Camera>();
+	}
 
 	void Update() {
 		// If there's an open menu, or the clicker is being pressed, ignore the touch.
@@ -55,7 +62,15 @@ public class CameraInputHandler : MonoBehaviour {
 				lastZoomPositions = newPositions;
 				zoomActive = true;
 			} else {
-				ZoomCamera(newPositions);
+				// Zoom based on the distance between the new positions compared to the 
+				// distance between the previous positions.
+				float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
+				float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
+				float offset = newDistance - oldDistance;
+
+				ZoomCamera(offset, ZoomSpeedTouch);
+
+				lastZoomPositions = newPositions;
 			}
 			break;
 
@@ -68,7 +83,6 @@ public class CameraInputHandler : MonoBehaviour {
 
 	}
 
-	// Note: Mouse movement can only pan the camera, not zoom.
 	void HandleMouse() {
 		// On mouse down, capture it's position.
 		// On mouse up, disable panning.
@@ -81,6 +95,12 @@ public class CameraInputHandler : MonoBehaviour {
 		} else if (Input.GetMouseButton(0)) {
 			PanCamera(Input.mousePosition);
 		}
+
+		// Check for scrolling to zoom the camera
+		float scroll = Input.GetAxis("Mouse ScrollWheel");
+		zoomActive = true;
+		ZoomCamera(scroll, ZoomSpeedMouse);
+		zoomActive = false;
 	}
 
 	void PanCamera(Vector3 newPanPosition) {
@@ -97,41 +117,19 @@ public class CameraInputHandler : MonoBehaviour {
 		lastPanPosition = newPanPosition;
 	}
 
-	void ZoomCamera(Vector2[] newZoomPositions) {
-		if (!zoomActive) {
+	void ZoomCamera(float offset, float speed) {
+		if (!zoomActive || offset == 0) {
 			return;
 		}
 
-		// Zoom based on the distance between the new positions compared to the 
-		// distance between the previous positions.
-		float newDistance = Vector2.Distance(newZoomPositions[0], newZoomPositions[1]);
-		float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
-		float offset = newDistance - oldDistance;
-
-		// Don't zoom if we're already at max zoom. 
-		// Without this, the camera will essentially end up panning due to the clamping below,
-		// but it won't look very good.
-		if (offset > 0 && transform.position.y == BoundsY[0]) {
-			return;
-		} else if (offset < 0 && transform.position.y == BoundsY[1]) {
-			return;
-		}
-
-		Vector3 move = transform.forward * offset * ZoomSpeed;
-		transform.Translate(move, Space.World);
-		ClampToBounds();
-
-		lastZoomPositions = newZoomPositions;
+		cam.fieldOfView = Mathf.Clamp(cam.fieldOfView - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
 	}
 
 	void ClampToBounds() {
-		// Account for current zoom when clamping on X and Z axis
-		float zoomPadding = (BoundsY[1] - transform.position.y) / 2;
-
 		Vector3 pos = transform.position;
-		pos.x = Mathf.Min(Mathf.Max(transform.position.x, BoundsX[0] - zoomPadding), BoundsX[1] + zoomPadding);
-		pos.y = Mathf.Min(Mathf.Max(transform.position.y, BoundsY[0]), BoundsY[1]);
-		pos.z = Mathf.Min(Mathf.Max(transform.position.z, BoundsZ[0] - zoomPadding), BoundsZ[1] + zoomPadding);
+		pos.x = Mathf.Clamp(transform.position.x, BoundsX[0], BoundsX[1]);
+		pos.z = Mathf.Clamp(transform.position.z, BoundsZ[0], BoundsZ[1]);
+
 		transform.position = pos;
 	}
 }

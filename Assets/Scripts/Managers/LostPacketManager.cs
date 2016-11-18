@@ -8,18 +8,23 @@ public class LostPacketManager : MonoBehaviour, LostPacket.Listener {
 	private static float MinTimeBetweenPackets = 1f;
 	private static float MaxTimeBetweenPackets = 20f;
 
-	private static float RewardMinimum = .001f;
-	private static float RewardMaximum = .010f;
+	private static float RewardMinimum = .05f;
+	private static float RewardMaximum = .2f;
 
 	public GameObject lostPacketPrefab;
 	public GameObject lostPacketParticleCollectionPrefab;
+	public AudioClip lostPacketCollectedSoundEffect;
 
+	private AudioSource audioSource;
 	private ObjectPool lostPacketPool;
 
 	private float timeUntilNextPacket;
 
 	void Awake() {
 		lostPacketPool = new LostPacketPool(lostPacketPrefab, 5);
+
+		audioSource = gameObject.AddComponent<AudioSource>();
+		audioSource.clip = lostPacketCollectedSoundEffect;
 	}
 
 	void Start() {
@@ -94,16 +99,21 @@ public class LostPacketManager : MonoBehaviour, LostPacket.Listener {
 		GameObject effect = (GameObject) Instantiate(lostPacketParticleCollectionPrefab, lostPacket.transform.position, Quaternion.identity);
 		Destroy(effect, 2f); // Note: Should probably use the particles duration (plus buffer) but this is better performance and relatively safe.
 
+		// Play the sound effect
+		if (GameManager.Instance.SettingsManager.SoundEffectsEnabled) {
+			audioSource.Play();
+		}
+
 		// Determine the reward for collection
 		float factor = Random.Range(RewardMinimum, RewardMaximum);
-		float storageCapacity = GameManager.Instance.StorageUnitManager.GetMaxCapacity();
-		float reward = storageCapacity * factor;
+		float bitCount = GameManager.Instance.GameState.StoredBits;
+		float reward = bitCount * factor;
 		#if UNITY_EDITOR
-		Debug.Log(string.Format("Reward for collecting LostPacket: Factor = {0}, Storage Capacity = {1}, Reward = {2}", factor, storageCapacity, reward));
+		Debug.Log(string.Format("Reward for collecting LostPacket: Factor = {0}, Bit Count = {1}, Reward = {2}", factor, bitCount, reward));
 		#endif
 
 		// Notify the appropriate systems
-		GameManager.Instance.StorageUnitManager.AddBits(reward);
+		GameManager.Instance.StorageUnitManager.AddBits(reward, false);
 		GameManager.Instance.GameState.LostPacketsCollected ++;
 
 		// Display the reward

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour {
 	public ColorManager ColorManager { get; set; }
 	public CircuitManager CircuitManager { get; set; }
 	public LostPacketManager LostPacketManager { get; set; }
+	public SettingsManager SettingsManager { get; set; }
 
 	public GameConfiguration GameConfiguration { get; set; }
 	public GameState GameState { get; set; }
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour {
 		ColorManager = GetComponent<ColorManager>();
 		CircuitManager = GetComponent<CircuitManager>();
 		LostPacketManager = GetComponent<LostPacketManager>();
+		SettingsManager = GetComponent<SettingsManager>();
 
 		// Initialize the game.
 		LoadConfiguration();

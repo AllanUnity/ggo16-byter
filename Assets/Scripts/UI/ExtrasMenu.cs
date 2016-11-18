@@ -7,7 +7,7 @@ public class ExtrasMenu : MonoBehaviour {
 	private static float UpdateStatsInterval = 0.25f;
 
 	public Button btnStats;
-	public Button btnAbout;
+	public Button btnSettings;
 	public Button btnCredits;
 
 	public Color buttonColorOn;
@@ -16,7 +16,7 @@ public class ExtrasMenu : MonoBehaviour {
 	public Color buttonTextColorOff;
 
 	public GameObject viewStats;
-	public GameObject viewAbout;
+	public GameObject viewSettings;
 	public GameObject viewCredits;
 
 	public Text txtLifetimeBits;
@@ -24,8 +24,11 @@ public class ExtrasMenu : MonoBehaviour {
 	public Text txtInboundBps;
 	public Text txtOutboundBps;
 	public Text txtStorageCapacity;
-	public Text txtBitsGeneratedPerSec;
 	public Text txtBitValue;
+
+	public Toggle backgroundMusicToggle;
+	public Toggle soundEffectToggle;
+	public Color toggleDisabledColor;
 
 	private Button[] buttons;
 	private GameObject[] views;
@@ -36,18 +39,22 @@ public class ExtrasMenu : MonoBehaviour {
 	void Start() {
 		buttons = new Button[]{
 			btnStats,
-			btnAbout,
+			btnSettings,
 			btnCredits
 		};
 		views = new GameObject[]{
 			viewStats, 
-			viewAbout,
+			viewSettings,
 			viewCredits
 		};
 
 		// Always update stats immediately
 		timeSinceUpdateStats = UpdateStatsInterval;
 		DisplayStats();
+
+		// Update settings
+		SetBackgroundMusicEnabled(GameManager.Instance.SettingsManager.BackgroundMusicEnabled);
+		SetSoundEffectsEnabled(GameManager.Instance.SettingsManager.SoundEffectsEnabled);
 	}
 	
 	// Update is called once per frame
@@ -68,7 +75,6 @@ public class ExtrasMenu : MonoBehaviour {
 			txtInboundBps.text = BitUtil.StringFormat(1f / GameManager.Instance.BitSpawnManager.TimeBetweenBitSpawns(), format, trim, breakLine);
 			txtOutboundBps.text = BitUtil.StringFormat(GameManager.Instance.DeviceManager.OutboundBps(), format, trim, breakLine);
 			txtStorageCapacity.text = BitUtil.StringFormat(GameManager.Instance.StorageUnitManager.GetMaxCapacity(), format, trim, breakLine);
-			txtBitsGeneratedPerSec.text = BitUtil.StringFormat(GameManager.Instance.UpgradeManager.GetBitsToGeneratePerLitNode(), format, trim, breakLine);
 			txtBitValue.text = BitUtil.StringFormat(GameManager.Instance.UpgradeManager.UpgradeState.BitValue, format, trim, breakLine);
 		}
 	}
@@ -78,22 +84,14 @@ public class ExtrasMenu : MonoBehaviour {
 		SetActiveView(viewStats);
 	}
 
-	public void DisplayAbout() {
-		SetActiveButton(btnAbout);
-		SetActiveView(viewAbout);
+	public void DisplaySettings() {
+		SetActiveButton(btnSettings);
+		SetActiveView(viewSettings);
 	}
 
 	public void DisplayCredits() {
 		SetActiveButton(btnCredits);
 		SetActiveView(viewCredits);
-	}
-
-	public void OpenTwitter() {
-		Application.OpenURL("https://twitter.com/kylewbanks");
-	}
-
-	public void OpenGitHub() {
-		Application.OpenURL("https://github.com/KyleBanks/ggo16-byter");
 	}
 
 	void SetActiveButton(Button activeButton) {
@@ -110,5 +108,36 @@ public class ExtrasMenu : MonoBehaviour {
 		for (int i = 0; i < views.Length; i++) {
 			views[i].SetActive(views[i] == activeView);
 		}
+	}
+
+	public void OnBackgroundMusicToggle() {
+		SetBackgroundMusicEnabled(backgroundMusicToggle.isOn);
+	}
+
+	public void OnSoundEffectToggle() {
+		SetSoundEffectsEnabled(soundEffectToggle.isOn);
+	}
+
+	void SetBackgroundMusicEnabled(bool enabled) {
+		GameManager.Instance.SettingsManager.BackgroundMusicEnabled = enabled;
+		BackgroundAudio.Instance.SetAudioEnabled(enabled);
+
+		SetToggleEnabled(backgroundMusicToggle, enabled);
+	}
+
+	void SetSoundEffectsEnabled(bool enabled) {
+		GameManager.Instance.SettingsManager.SoundEffectsEnabled = enabled;
+		SetToggleEnabled(soundEffectToggle, enabled);
+	}
+
+	void SetToggleEnabled(Toggle toggle, bool enabled) {
+		Color color;
+		if (enabled) {
+			color = GameManager.Instance.ColorManager.purpleColor;
+		} else {
+			color = toggleDisabledColor;
+		}
+
+		toggle.GetComponentInChildren<Image>().color = color;
 	}
 }

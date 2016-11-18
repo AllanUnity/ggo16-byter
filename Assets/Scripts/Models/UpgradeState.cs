@@ -6,7 +6,7 @@ public class UpgradeState {
 	public float OutboundBPSForAttack { get; set; } 
 	public float OutboundBPS { get; set; } 
 	public float StorageCapacity { get; set; }
-	public float GeneratedBPS { get; set; }
+	public float AdditionalBitValuePerLitNode { get; set; }
 	public float BitValue { get; set; }
 
 	public UpgradeState() {
@@ -14,12 +14,12 @@ public class UpgradeState {
 		OutboundBPSForAttack = 1f;
 		OutboundBPS = 1f;
 		StorageCapacity = 1f;
-		GeneratedBPS = 0f;
+		AdditionalBitValuePerLitNode = 0f;
 		BitValue = 1f;
 	}
 
 	public override string ToString() {
-		return string.Format("[UpgradeState: InboundBPS={0}, OutboundBPSForAttack={1}, OutboundBPS={2}, StorageCapacity={3}, GeneratedBPS={4}, BitValue={5}]", InboundBPS, OutboundBPSForAttack, OutboundBPS, StorageCapacity, GeneratedBPS, BitValue);
+		return string.Format("[UpgradeState: InboundBPS={0}, OutboundBPSForAttack={1}, OutboundBPS={2}, StorageCapacity={3}, AdditionalBitValuePerLitNode={4}, BitValue={5}]", InboundBPS, OutboundBPSForAttack, OutboundBPS, StorageCapacity, AdditionalBitValuePerLitNode, BitValue);
 	}
 
 }

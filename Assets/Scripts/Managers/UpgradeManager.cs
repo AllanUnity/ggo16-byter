@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class UpgradeManager : MonoBehaviour {
 
-	private static float TimeBetweenBitGeneration = 1f; // Time in seconds after which to generate bits
-
 	public Sprite[] upgradeTypeIcons;
 
 	private UpgradeState upgradeState;
@@ -16,11 +14,9 @@ public class UpgradeManager : MonoBehaviour {
 	}
 
 	private Dictionary<int, Upgrade> upgradeCache;
-	private float timeToGenerate;
 
 	void Awake() {
 		upgradeCache = new Dictionary<int, Upgrade>();
-		timeToGenerate = TimeBetweenBitGeneration;
 	}
 
 	void Start() {
@@ -28,30 +24,8 @@ public class UpgradeManager : MonoBehaviour {
 		RecalculateUpgradeState();
 	}
 
-	void Update() {
-		timeToGenerate -= Time.deltaTime;
-
-		if (timeToGenerate <= 0f) {
-			timeToGenerate = TimeBetweenBitGeneration;
-
-			if (GameManager.Instance.CircuitManager.GetLitNodeCount() > 0) {
-				// Note: No longer applying the upgrade PER lit node, rather just a 
-				// flat generation value as long as at least asingle node is lit.
-				float generatedBitCount = GetBitsToGeneratePerLitNode();// * GameManager.Instance.CircuitManager.GetLitNodeCount();
-
-				#if UNITY_EDITOR
-				Debug.Log("Generating: " + generatedBitCount);
-				#endif
-
-				GameManager.Instance.StorageUnitManager.AddBits(
-					generatedBitCount
-				);
-			}
-		}
-	}
-
-	public float GetBitsToGeneratePerLitNode() {
-		return upgradeState.GeneratedBPS * GameManager.Instance.GameState.StoredBits;
+	public float GetAdditionalBitValueForLitNodes() {
+		return upgradeState.AdditionalBitValuePerLitNode * GameManager.Instance.CircuitManager.GetLitNodeCount();
 	}
 
 	public string GetDescription(int type, float value) {
@@ -158,7 +132,7 @@ public class UpgradeManager : MonoBehaviour {
 			float value = upgrade.Value * purchasedUpgrades[i].QuantityPurchased;
 			switch(upgrade.Type) {
 			case UpgradeType.Automation:
-				upgradeState.GeneratedBPS += value;	
+				upgradeState.AdditionalBitValuePerLitNode += value;	
 				break;
 			case UpgradeType.Botnet:
 				upgradeState.OutboundBPSForAttack -= value;

@@ -8,7 +8,7 @@ public class LostPacketRewardText : MonoBehaviour {
 		void OnRewardTextComplete(LostPacketRewardText rewardText);
 	}
 
-	private static float IncrementYPerTick = .1f;
+	private static float IncrementYPerTick = .2f;
 	private static float DecrementAlphaPerTick = .02f;
 
 	private Text label;

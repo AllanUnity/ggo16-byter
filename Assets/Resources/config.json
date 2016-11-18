@@ -133,7 +133,7 @@
 			{
 				"name": "Automation",
 				"id": 1,
-				"description": "+@ of Stored Bits (per/sec) When a Node is Lit"
+				"description": "+@ Bit Value per Lit Node"
 			},
 			{
 				"name": "Botnet",
@@ -170,8 +170,8 @@
 					{
 						"name": "Programmable Keyboard",
 						"type": 1,
-						"value": 0.0001,
-						"quantity": 5
+						"value": 0.01,
+						"quantity": 10
 					},
 					{
 						"name": "Dial-Up",
@@ -200,8 +200,8 @@
 					{
 						"name": "Scripting",
 						"type": 1,
-						"value": 0.0002,
-						"quantity": 5
+						"value": 0.02,
+						"quantity": 10
 					},
 					{
 						"name": "Workplace Botnet",
@@ -230,7 +230,7 @@
 					{
 						"name": "Code Monkeys",
 						"type": 1,
-						"value": 0.0005,
+						"value": 0.05,
 						"quantity": 5
 					},
 					{
@@ -260,7 +260,7 @@
 					{
 						"name": "Open Source Projects",
 						"type": 1,
-						"value": 0.05,
+						"value": 0.5,
 						"quantity": 1
 					},
 					{
@@ -320,7 +320,7 @@
 					{
 						"name": "Cron Jobs",
 						"type": 1,
-						"value": 0.001,
+						"value": 0.03,
 						"quantity": 10
 					},
 					{
@@ -380,8 +380,8 @@
 					{	
 						"name": "Alien Robotics",
 						"type": 1,
-						"value": 0.001,
-						"quantity": 10
+						"value": 0.05,
+						"quantity": 20
 					},
 					{	
 						"name": "Galactic Botnet",

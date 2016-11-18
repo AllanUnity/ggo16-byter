@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CircuitNode : MonoBehaviour {
 
-	private static float OnStateDuration = .5f;
+	private static float OnStateDuration = .75f;
 	private static float OnStateLightIntensity = 1f;
 	private static float OffStateLightIntensity = 0f;
 	private static float LightIntensityChangePerTick = 0.05f;

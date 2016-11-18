@@ -11,6 +11,9 @@ public class BitSpawnManager : MonoBehaviour {
 	public Transform[] bitCheckpoint1;
 	public Transform[] bitCheckpoint2;
 
+	public AudioClip bitSpawnSoundEffect;
+	private AudioSource audioSource;
+
 	public bool IsSpawningBits { get; set; }
 	private float timeSinceBitSpawned;
 	private ObjectPool[] bitPools;
@@ -21,6 +24,9 @@ public class BitSpawnManager : MonoBehaviour {
 		for (int i = 0; i < bitPools.Length; i++) {
 			bitPools[i] = new BitPool(bitPrefabs[i], BitPoolSize, i, bitSpawnPosition.position, bitCheckpoint1, bitCheckpoint2);
 		}
+
+		audioSource = gameObject.AddComponent<AudioSource>();
+		audioSource.clip = bitSpawnSoundEffect;
 	}
 	
 	// Update is called once per frame
@@ -35,9 +41,15 @@ public class BitSpawnManager : MonoBehaviour {
 	void SpawnBits() {
 		timeSinceBitSpawned += Time.deltaTime;
 
+		bool spawnedBit = false;
 		while(timeSinceBitSpawned >= TimeBetweenBitSpawns()) {
 			bitPools[Random.Range(0, bitPools.Length)].GetInstance();
 			timeSinceBitSpawned -= TimeBetweenBitSpawns();
+			spawnedBit = true;
+		}
+
+		if (spawnedBit && GameManager.Instance.SettingsManager.SoundEffectsEnabled) {
+			audioSource.Play();
 		}
 	}
 
@@ -51,6 +63,6 @@ public class BitSpawnManager : MonoBehaviour {
 	public void OnBitReachedTarget(Bit bit) {
 		bitPools[bit.PoolId].ReturnInstance(bit.gameObject);
 
-		GameManager.Instance.StorageUnitManager.AddBits(1);
+		GameManager.Instance.StorageUnitManager.AddBits(1, true);
 	}
 }
