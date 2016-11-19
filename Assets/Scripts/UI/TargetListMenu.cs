@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class TargetListMenu : MonoBehaviour {
+public class TargetListMenu : AnimatedMenu {
 
 	public GameObject navigationPanel;
 	public GameObject navigationIndicatorPrefab;
@@ -36,6 +36,10 @@ public class TargetListMenu : MonoBehaviour {
 		}
 
 		SetSelectedTarget(GameManager.Instance.GameState.NextTargetId);
+	}
+
+	public override void Update() {
+		base.Update();
 	}
 
 	public void ReloadUI() {

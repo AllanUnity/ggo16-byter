@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ExtrasMenu : MonoBehaviour {
+public class ExtrasMenu : AnimatedMenu {
 
 	private static float UpdateStatsInterval = 0.25f;
 
@@ -58,7 +58,8 @@ public class ExtrasMenu : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public override void Update () {
+		base.Update();
 		if (!viewStats.activeInHierarchy) {
 			return;
 		}

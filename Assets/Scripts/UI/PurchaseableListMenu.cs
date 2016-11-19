@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class PurchaseableListMenu : MonoBehaviour {
+public class PurchaseableListMenu : AnimatedMenu {
 
 	public enum PurchaseState {
 		Locked,
@@ -23,7 +23,9 @@ public class PurchaseableListMenu : MonoBehaviour {
 	private int menuId;
 	private PurchaseableListMenuPresenter presenter;
 
-	void Update() {
+	public override void Update() {
+		base.Update();
+
 		// Note: This must run on the update loop rather than in ReloadUI, because 
 		// the value is constantly changing.
 		if (presenter.ShouldDisplayOverallProgressBar(menuId)) {

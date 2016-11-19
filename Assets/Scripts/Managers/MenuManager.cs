@@ -21,7 +21,7 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 
 	public Image imgStorageUnitsBtnBackground;
 
-	private GameObject[] menus;
+	private AnimatedMenu[] menus;
 
 	private float timeToReloadUI;
 
@@ -33,16 +33,18 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 	}
 		
 	void Awake() {
-		menus = new GameObject[]{
-			deviceList.gameObject,
-			storageUnitList.gameObject,
-			upgradeList.gameObject,
-			targetList.gameObject,
-			extrasMenu.gameObject
+		menus = new AnimatedMenu[]{
+			deviceList,
+			storageUnitList,
+			upgradeList,
+			targetList,
+			extrasMenu
 		};
 
 		// Hide any open menus left by the editor
-		SetVisibleMenu(null);
+		for (int i = 0; i < menus.Length; i++) {
+			menus[i].Init();
+		}
 
 		// Initialize Menus
 		deviceList.Initialize(DeviceMenuId, this);
@@ -76,41 +78,41 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 	}
 		
 	public void DisplayDeviceList() {
-		SetVisibleMenu(deviceList.gameObject);
+		SetVisibleMenu(deviceList);
 		deviceList.ReloadUI();
 	}
 
 	public void DisplayStorageUnitList() {
-		SetVisibleMenu(storageUnitList.gameObject);
+		SetVisibleMenu(storageUnitList);
 		storageUnitList.ReloadUI();
 	}
 
 	public void DisplayUpgradeList() {
-		SetVisibleMenu(upgradeList.gameObject);
+		SetVisibleMenu(upgradeList);
 		upgradeList.ReloadUI();
 	}
 
 	public void DisplayTargetList() {
-		SetVisibleMenu(targetList.gameObject);
+		SetVisibleMenu(targetList);
 	}
 
 	public void DisplayExtrasMenu() {
-		SetVisibleMenu(extrasMenu.gameObject);
+		SetVisibleMenu(extrasMenu);
 	}
 
 	public void CloseCurrentMenu() {
 		SetVisibleMenu(null);
 	}
 
-	void SetVisibleMenu(GameObject menu) {
+	void SetVisibleMenu(AnimatedMenu menu) {
 		hasOpenMenu = false;
 
 		for (int i = 0; i < menus.Length; i++) {
 			if (menus[i] == menu) {
-				menus[i].SetActive(true);
+				menus[i].MoveOnscreen();
 				hasOpenMenu = true;
-			} else {
-				menus[i].SetActive(false);
+			} else if (menus[i].gameObject.activeSelf) {
+				menus[i].MoveOffscreen();
 			}
 		}
 	}
