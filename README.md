@@ -4,5 +4,5 @@
 
 ## How to Play
 
-- Web: Play in Your Browser at [kylewbanks.com/byter](https://kylewbanks.com/byter)
-- Other: Build From Source by cloning the repository and opening in [Unity3D](https://unity3d.com/)
+- **Web:** Play in Your Browser at [kylewbanks.com/byter](https://kylewbanks.com/byter)
+- **Other:** Build From Source by cloning the repository and opening in [Unity3D](https://unity3d.com/)
