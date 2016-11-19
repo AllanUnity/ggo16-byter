@@ -29,7 +29,7 @@ public class CameraInputHandler : MonoBehaviour {
 		if (GameManager.Instance.MenuManager.HasOpenMenu || GameManager.Instance.BitSpawnManager.IsSpawningBits) {
 			return;
 		}
-		if (Input.touchSupported) {
+		if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer) {
 			HandleTouch();
 		} else {
 			HandleMouse();

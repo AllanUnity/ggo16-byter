@@ -107,7 +107,7 @@ public class LostPacketManager : MonoBehaviour, LostPacket.Listener {
 		// Determine the reward for collection
 		float factor = Random.Range(RewardMinimum, RewardMaximum);
 		float bitCount = GameManager.Instance.GameState.StoredBits;
-		float reward = bitCount * factor;
+		float reward = Mathf.Max(1f, bitCount * factor); // Ensure a minimum of 1 bit (important when the reward percentage ends up less than 1.0)
 		#if UNITY_EDITOR
 		Debug.Log(string.Format("Reward for collecting LostPacket: Factor = {0}, Bit Count = {1}, Reward = {2}", factor, bitCount, reward));
 		#endif
