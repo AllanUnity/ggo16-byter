@@ -138,6 +138,8 @@ public class ExtrasMenu : MonoBehaviour {
 			color = toggleDisabledColor;
 		}
 
-		toggle.GetComponentInChildren<Image>().color = color;
+		// TODO: Create a toggle script to handle this, this is nasty.
+		toggle.transform.Find("Background").GetComponent<Image>().color = color;
+		toggle.transform.Find("Checkmark").gameObject.SetActive(enabled);
 	}
 }

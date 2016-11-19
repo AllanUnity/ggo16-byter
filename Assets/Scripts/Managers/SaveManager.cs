@@ -3,11 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using System;
+using System.Runtime.InteropServices;
 
 public class SaveManager : MonoBehaviour {
 
 	private static float GameSaveInterval = 1.0f; // In seconds
 	private static string GameSaveFilename = "/game-save.data";
+
+	// Required import from HandleIO.jslib for WebGL persistence.
+	[DllImport("__Internal")]
+	private static extern void SyncFiles();
 
 	private float timeSinceSave;
 
@@ -36,6 +42,10 @@ public class SaveManager : MonoBehaviour {
 		FileStream file = File.Create(gameSavePath);
 		bf.Serialize(file, GameManager.Instance.GameState);
 		file.Close();
+
+		if (Application.platform == RuntimePlatform.WebGLPlayer) {
+			SyncFiles();
+		}
 	}
 
 	public GameState LoadGame() {
