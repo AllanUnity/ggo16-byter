@@ -4,23 +4,38 @@ using System.Collections;
 public class StorageUnitManager : MonoBehaviour {
 
 	public Transform spawnPosition;
+	public GameObject container;
 	public GameObject[] storageUnitPrefabs;
 	public Sprite[] storageUnitIcons;
 
 	private GameObject currentStorageUnit;
 	private int storageUnitId = -1;
 
+	void Start() {
+		GameManager.Instance.IntroAnimationManager.AddObjectToAnimate(currentStorageUnit);
+		currentStorageUnit.SetActive(true);
+	}
+
 	public void SetStorageUnit(int storageUnitId) {
 		if (this.storageUnitId == storageUnitId) {
 			return;
 		}
 
-		GameObject storageUnit = (GameObject) Instantiate(storageUnitPrefabs[storageUnitId]);
-		storageUnit.transform.position = spawnPosition.position + storageUnit.GetComponent<AnchorPoint>().point;
+		GameObject storageUnit = (GameObject) Instantiate(storageUnitPrefabs[storageUnitId], container.transform, true);
+		storageUnit.transform.localPosition = spawnPosition.localPosition + storageUnit.GetComponent<AnchorPoint>().point;
 
 		if (currentStorageUnit != null) {
 			Destroy(currentStorageUnit);
+		} else {
+			// First StorageUnit, assuming game start up, set inactive until Start is called so it can be added
+			// to the intro animation.
+			//
+			// Note: Technically it could just be added to the animation here, but since this is likely being called from Awake
+			// in the GameManager, the storage unit will either be first or last to animate, but it looks awkward when its the 
+			// first object to animate into place.
+			storageUnit.SetActive(false);
 		}
+
 		currentStorageUnit = storageUnit;
 
 		this.storageUnitId = storageUnitId;

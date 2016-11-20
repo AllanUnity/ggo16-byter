@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	public CircuitManager CircuitManager { get; set; }
 	public LostPacketManager LostPacketManager { get; set; }
 	public SettingsManager SettingsManager { get; set; }
+	public IntroAnimationManager IntroAnimationManager { get; set; }
 
 	public GameConfiguration GameConfiguration { get; set; }
 	public GameState GameState { get; set; }
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour {
 		CircuitManager = GetComponent<CircuitManager>();
 		LostPacketManager = GetComponent<LostPacketManager>();
 		SettingsManager = GetComponent<SettingsManager>();
+		IntroAnimationManager = GetComponent<IntroAnimationManager>();
 
 		// Initialize the game.
 		LoadConfiguration();
@@ -54,10 +56,6 @@ public class GameManager : MonoBehaviour {
 
 	void LoadGameState() {
 		GameState = SaveManager.LoadGame();
-		if (GameState.PurchasedUpgrades == null) {
-			GameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
-		}
-
 		StorageUnitManager.SetStorageUnit(GameState.StorageUnitId);
 		DeviceManager.SetDevice(GameState.DeviceId);
 	}

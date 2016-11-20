@@ -66,7 +66,17 @@ public class SaveManager : MonoBehaviour {
 			Debug.LogError("Faled to load saved game due to: " + ex.ToString());
 		}
 
-		return gameState != null ? gameState : new GameState();
+		// Initialize a new GameState if none could be loaded.
+		if (gameState == null) {
+			gameState = new GameState();
+		}
+
+		// Ensure the PurchasedUpgrades list is initialized
+		if (gameState.PurchasedUpgrades == null) {
+			gameState.PurchasedUpgrades = new List<PurchasedUpgrade>();
+		}
+
+		return gameState;
 	}
 
 	string GetGameSavePath() {
