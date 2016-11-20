@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Bit : MonoBehaviour {
 
-	private static float[] MovementSpeedRange = new float[]{.5f, 1.5f}; // In seconds
+	private static float[] MovementSpeedRange = new float[]{.3f, 1f}; // In seconds
 
 	public int PoolId {get; set;}
+
+	private TrailRenderer trail;
 
 	private Vector3 spawnPosition;
 	private Transform[] path;
@@ -20,8 +22,10 @@ public class Bit : MonoBehaviour {
 	}
 
 	void Start() {
-		spawnPosition = transform.position;
+		trail = GetComponent<TrailRenderer>();
 		GetComponent<Light>().color = GetComponent<Renderer>().material.color;
+
+		spawnPosition = transform.position;
 		Reset();
 	}
 	
@@ -44,6 +48,8 @@ public class Bit : MonoBehaviour {
 	void Reset() {
 		transform.position = spawnPosition;
 		pathIndex = 0;
+		trail.Clear();
+
 		StartNewMovement();
 	}
 

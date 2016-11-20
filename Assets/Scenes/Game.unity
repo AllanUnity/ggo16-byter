@@ -6348,6 +6348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1020188706}
+  - {fileID: 979831699}
   - {fileID: 2021475738}
   - {fileID: 1021947265}
   - {fileID: 752410844}
@@ -7456,7 +7457,7 @@ RectTransform:
   - {fileID: 2043690476}
   - {fileID: 14017241}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 10}
@@ -9721,17 +9722,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 979831698}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 917439146}
-  m_Father: {fileID: 2021475738}
-  m_RootOrder: 4
+  m_Father: {fileID: 676487857}
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -100}
+  m_AnchoredPosition: {x: 0, y: 590}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &979831700
@@ -10414,7 +10415,7 @@ RectTransform:
   - {fileID: 1397038723}
   - {fileID: 1200219666}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -50, y: 250}
@@ -11074,7 +11075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 676487857}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -11288,7 +11289,7 @@ RectTransform:
   - {fileID: 1370467767}
   - {fileID: 792767765}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 10}
@@ -13342,7 +13343,7 @@ RectTransform:
   - {fileID: 401092517}
   - {fileID: 1777507866}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 75}
@@ -17679,7 +17680,7 @@ RectTransform:
   - {fileID: 1018640193}
   - {fileID: 38310072}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 10}
@@ -18606,7 +18607,7 @@ RectTransform:
   - {fileID: 952713685}
   - {fileID: 535774916}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 10}
@@ -20751,9 +20752,8 @@ RectTransform:
   - {fileID: 1847083904}
   - {fileID: 1205940323}
   - {fileID: 993375}
-  - {fileID: 979831699}
   m_Father: {fileID: 676487857}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -40}
@@ -20805,8 +20805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   txtStoredBits: {fileID: 1847083905}
   txtInboundBitsPerSec: {fileID: 1205940324}
-  txtAdditionalBitValue: {fileID: 917439148}
-  additionalBitValueContainer: {fileID: 979831698}
   lostPacketRewardContainer: {fileID: 1125694780}
   lostPacketRewardTextPrefab: {fileID: 1000012291118948, guid: 0dead4b5ecc4443b8a0ea8acfd6575fd,
     type: 2}
