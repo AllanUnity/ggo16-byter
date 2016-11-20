@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraInputHandler : MonoBehaviour {
+public class CameraHandler : MonoBehaviour {
 
 	private static float PanSpeed = 20f;
 	private static float ZoomSpeedTouch = 0.1f;

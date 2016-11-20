@@ -51,8 +51,8 @@ public class LostPacketManager : MonoBehaviour, LostPacket.Listener {
 		float paddingX = Camera.main.aspect * Camera.main.orthographicSize * SpawnPaddingFactor;
 
 		Vector3 pos = packet.transform.position;
-		pos.x = fromLeft ? CameraInputHandler.BoundsX[0] - paddingX : CameraInputHandler.BoundsX[1] + paddingX;
-		pos.z = Random.Range(CameraInputHandler.BoundsZ[0] - paddingZ, CameraInputHandler.BoundsZ[1] + paddingZ);
+		pos.x = fromLeft ? CameraHandler.BoundsX[0] - paddingX : CameraHandler.BoundsX[1] + paddingX;
+		pos.z = Random.Range(CameraHandler.BoundsZ[0] - paddingZ, CameraHandler.BoundsZ[1] + paddingZ);
 		packet.transform.position = pos;
 
 		Vector3 target = pos;

@@ -4,28 +4,55 @@ using System.Collections.Generic;
 
 public class IntroAnimationManager : MonoBehaviour, IntroAnimation.Listener {
 
-	private static float DelayBetweenAnimations = 0.1f;
+	private static float DelayBetweenObjectAnimations = 0.075f;
 
 	public GameObject[] objectsToAnimate;
+	public GameObject[] uiToAnimate;
+	public GameObject[] objectsToHide;
 
 	private List<GameObject> animatingObjects = new List<GameObject>();
 	private int completeAnimations;
 
 	void Awake() {
+		foreach (GameObject obj in objectsToHide) {
+			obj.SetActive(false);
+		}
+
 		for (int i = 0; i < objectsToAnimate.Length; i++) {
 			AddObjectToAnimate(objectsToAnimate[i]);
 		}
 		objectsToAnimate = null;
+
+		for (int i = 0; i < uiToAnimate.Length; i++) {
+			AddInterfaceToAnimate(uiToAnimate[i]);
+		}
+		uiToAnimate = null;
 	}
 
 	public void AddObjectToAnimate(GameObject obj) {
-		Vector3 pos = obj.transform.localPosition;
+		if (!obj.activeSelf) {
+			return;
+		}
 
+		Vector3 pos = obj.transform.localPosition;
 		IntroAnimation anim = obj.AddComponent<IntroAnimation>();
 		anim.Init(
 			this,
-			animatingObjects.Count * DelayBetweenAnimations, 
+			animatingObjects.Count * DelayBetweenObjectAnimations, 
 			new Vector3(pos.x, pos.y, pos.z - 50f), 
+			pos
+		);
+
+		animatingObjects.Add(obj);
+	}
+
+	public void AddInterfaceToAnimate(GameObject obj) {
+		Vector3 pos = obj.transform.localPosition;
+		IntroAnimation anim = obj.AddComponent<IntroAnimation>();
+		anim.Init(
+			this,
+			animatingObjects.Count * DelayBetweenObjectAnimations, 
+			new Vector3(pos.x, pos.y - (Camera.main.pixelHeight * 2), pos.z), 
 			pos
 		);
 
@@ -38,6 +65,9 @@ public class IntroAnimationManager : MonoBehaviour, IntroAnimation.Listener {
 		completeAnimations ++;
 
 		if (completeAnimations == animatingObjects.Count) {
+			foreach (GameObject obj in objectsToHide) {
+				obj.SetActive(true);
+			}
 			Destroy(this);
 		}
 	}

@@ -13,7 +13,6 @@ public class StorageUnitManager : MonoBehaviour {
 
 	void Start() {
 		GameManager.Instance.IntroAnimationManager.AddObjectToAnimate(currentStorageUnit);
-		currentStorageUnit.SetActive(true);
 	}
 
 	public void SetStorageUnit(int storageUnitId) {
@@ -26,14 +25,6 @@ public class StorageUnitManager : MonoBehaviour {
 
 		if (currentStorageUnit != null) {
 			Destroy(currentStorageUnit);
-		} else {
-			// First StorageUnit, assuming game start up, set inactive until Start is called so it can be added
-			// to the intro animation.
-			//
-			// Note: Technically it could just be added to the animation here, but since this is likely being called from Awake
-			// in the GameManager, the storage unit will either be first or last to animate, but it looks awkward when its the 
-			// first object to animate into place.
-			storageUnit.SetActive(false);
 		}
 
 		currentStorageUnit = storageUnit;

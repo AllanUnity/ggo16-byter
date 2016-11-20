@@ -7861,6 +7861,14 @@ MonoBehaviour:
   - {fileID: 1729034826}
   - {fileID: 53503188}
   - {fileID: 1685971181}
+  uiToAnimate:
+  - {fileID: 2021475737}
+  - {fileID: 1200219665}
+  - {fileID: 1397038722}
+  - {fileID: 876046169}
+  - {fileID: 1020188705}
+  objectsToHide:
+  - {fileID: 979831698}
 --- !u!1 &775680146
 GameObject:
   m_ObjectHideFlags: 0
