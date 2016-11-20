@@ -1,5 +1,10 @@
 ![Byter for GitHub Game Off 2016](/logo.png)
 
+## Links 
+
+- [Latest Gameplay Video](https://youtu.be/AaTmZjbEGJ0)
+- [Devblog](https://kylewbanks.com/category/ggo16)
+
 **Byter** is an open source *clicker* game developed for [GitHub Game Off 2016](gameoff.github.com). The goal of **Byter** is for players to *hack* various targets by producing *bits*. Players can progress and improve by purchasing devices and storage units, and acquiring upgrades.
 
 ## How to Play
