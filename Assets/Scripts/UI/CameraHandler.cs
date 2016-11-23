@@ -9,7 +9,8 @@ public class CameraHandler : MonoBehaviour {
 
 	public static float[] BoundsX = new float[]{-10f, 5f};
 	public static float[] BoundsZ = new float[]{-18f, -4f};
-	public static float[] ZoomBounds = new float[]{10f, 70f}; 
+
+	public static float[] ZoomBounds = new float[]{10f, 85f};
 
 	private Camera cam;
 
@@ -22,6 +23,10 @@ public class CameraHandler : MonoBehaviour {
 
 	void Awake() {
 		cam = GetComponent<Camera>();
+
+		#if UNITY_ANDROID || UNITY_IOS 
+		cam.fieldOfView = 60f;
+		#endif
 	}
 
 	void Update() {

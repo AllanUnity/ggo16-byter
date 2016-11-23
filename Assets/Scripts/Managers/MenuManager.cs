@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 	public PurchaseableListMenu upgradeList;
 	public TargetListMenu targetList;
 	public ExtrasMenu extrasMenu;
+	public Tutorial tutorial;
 
 	public Image imgStorageUnitsBtnBackground;
 
@@ -50,6 +51,10 @@ public class MenuManager : MonoBehaviour, PurchaseableListMenuPresenter {
 		deviceList.Initialize(DeviceMenuId, this);
 		storageUnitList.Initialize(StorageUnitMenuId, this);
 		upgradeList.Initialize(UpgradeMenuId, this);
+
+		// Always set the tutorial active, in case it was deactivated in the editor.
+		// The tutorial will manage itself and display/hide as necessary.
+		tutorial.gameObject.SetActive(true);
 
 		timeToReloadUI = MenuRefreshInterval;
 	}

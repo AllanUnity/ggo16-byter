@@ -12,7 +12,7 @@ public class StorageUnitManager : MonoBehaviour {
 	private int storageUnitId = -1;
 
 	void Start() {
-		GameManager.Instance.IntroAnimationManager.AddObjectToAnimate(currentStorageUnit);
+		GameManager.Instance.IntroAnimationManager.AddObjectToAnimate(currentStorageUnit, IntroAnimationManager.DefaultOffset);
 	}
 
 	public void SetStorageUnit(int storageUnitId) {

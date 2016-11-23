@@ -17,6 +17,8 @@ public class GameState {
 
 	public int LostPacketsCollected { get; set; }
 
+	public bool TutorialViewed { get; set; }
+
 	// TODO: It would be nice to have this be a map, but System.Serializable doesn't support Dictionary types.
 	// Instead, have to use a list of custom (serializable) objects instead.
 	public List<PurchasedUpgrade> PurchasedUpgrades { get; set; }
