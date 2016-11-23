@@ -1,4 +1,4 @@
-[![Byter for GitHub Game Off 2016](/logo.png)](https://kylewbanks.com/byter)
+[![Byter for GitHub Game Off 2016](/Design/logo.png)](https://kylewbanks.com/byter)
 
 ## Links 
 
