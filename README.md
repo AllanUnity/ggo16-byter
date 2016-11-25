@@ -12,4 +12,6 @@
 ## How to Play
 
 - **Web:** Play in Your Browser at [kylewbanks.com/byter](https://kylewbanks.com/byter)
-- **Other:** Build From Source by cloning the repository and opening in [Unity3D](https://unity3d.com/)
+- **Android:** Download from [Google Play](https://play.google.com/store/apps/details?id=com.kylewbanks.byter)
+- **Mac, Linux, Windows**: Download the appropriate ZIP for your platform from the [Releases page](https://github.com/KyleBanks/ggo16-byter/releases)
+- **iOS, Other:** Build From Source by cloning the repository and opening in [Unity3D](https://unity3d.com/)

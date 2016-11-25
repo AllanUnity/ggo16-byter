@@ -3,14 +3,13 @@ using System.Collections;
 
 public class CameraHandler : MonoBehaviour {
 
-	private static float PanSpeed = 20f;
-	private static float ZoomSpeedTouch = 0.1f;
-	private static float ZoomSpeedMouse = .5f;
+	private static readonly float PanSpeed = 20f;
+	private static readonly float ZoomSpeedTouch = 0.1f;
+	private static readonly float ZoomSpeedMouse = .5f;
 
-	public static float[] BoundsX = new float[]{-10f, 5f};
-	public static float[] BoundsZ = new float[]{-18f, -4f};
-
-	public static float[] ZoomBounds = new float[]{10f, 85f};
+	public static readonly float[] BoundsX = new float[]{-10f, 5f};
+	public static readonly float[] BoundsZ = new float[]{-18f, -4f};
+	public static readonly float[] ZoomBounds = new float[]{10f, 85f};
 
 	private Camera cam;
 
@@ -34,6 +33,7 @@ public class CameraHandler : MonoBehaviour {
 		if (GameManager.Instance.MenuManager.HasOpenMenu || GameManager.Instance.BitSpawnManager.IsSpawningBits) {
 			return;
 		}
+
 		if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer) {
 			HandleTouch();
 		} else {
@@ -84,8 +84,6 @@ public class CameraHandler : MonoBehaviour {
 			zoomActive = false;
 			break;
 		}
-
-
 	}
 
 	void HandleMouse() {
@@ -114,7 +112,7 @@ public class CameraHandler : MonoBehaviour {
 		}
 
 		// Translate the camera position based on the new input position
-		Vector3 offset = Camera.main.ScreenToViewportPoint(lastPanPosition - newPanPosition);
+		Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
 		Vector3 move = new Vector3(offset.x * PanSpeed, 0, offset.y * PanSpeed);
 		transform.Translate(move, Space.World);  
 		ClampToBounds();
